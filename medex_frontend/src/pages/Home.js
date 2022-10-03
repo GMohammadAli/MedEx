@@ -1,4 +1,5 @@
 import { Grid, Typography, Button, Box, Container } from "@mui/material";
+import Card from "../components/Card";
 import Image from "../components/Image";
 // import { makeStyles } from "@mui/styles";
 import React from "react";
@@ -13,12 +14,60 @@ import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 function Home() {
 //   const classes = useStyles();/
   return (
-    <Box>
-      <Grid
+    <Box
+      style={{
+        width: "100vw",
+        height: "91vh",
+        spacing: 0,
+        justify: "space-around",
+      }}
+    >
+      <Box
+        style={{
+          // display: "flex",
+          // justifyContent: "center",
+          // alignItems: "center",
+          padding: "5rem",
+        }}
+        sx={{ border: 1, borderRadius: "16px" }}
+      >
+        <Typography
+          component="h5"
+          variant="h3"
+          color="secondary"
+          gutterBottom
+          sx={{ textAlign: "center" }}
+        >
+          Login Page
+        </Typography>
+        <Typography
+          variant="h4"
+          component="h5"
+          gutterBottom
+          sx={{ textAlign: "center" }}
+        >
+          Choose the Account Type
+        </Typography>
+        <Grid container>
+          <Grid item md={4} style={{ display: "flex", padding: "3rem" }}>
+            <Card profileTitle="Doctor" imgSrc="/Doctor.png" />
+          </Grid>
+          <Grid item md={4} style={{ display: "flex", padding: "3rem" }}>
+            <Card profileTitle="Patient" imgSrc="/Patient.png" />
+          </Grid>
+          <Grid item md={4} style={{ display: "flex", padding: "3rem" }}>
+            <Card
+              profileTitle="Diagnostic Center"
+              imgSrc="/Diagnostic_Center.png"
+            />
+          </Grid>
+        </Grid>
+      </Box>
+      {/* <Grid
         container
         // direction="column-reverse"
       >
-        <Grid item md={6} style={{ display: "flex", padding: "5rem" }}>
+        <Grid item md={12} style={{ display: "flex", padding: "5rem" }}>
           <Container
             maxWidth="xs"
             style={{ justifyContent: "center", alignContent: "center" }}
@@ -59,9 +108,7 @@ function Home() {
             </Button>
           </Container>
         </Grid>
-        {/* Image Section */}
-        <Image src="/landing.png" />
-      </Grid>
+      </Grid> */}
     </Box>
   );
 }

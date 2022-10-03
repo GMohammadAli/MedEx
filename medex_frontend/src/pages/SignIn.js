@@ -21,7 +21,7 @@ function SignIn() {
         //direction="column-reverse"
       >
         {/* Image Section */}
-        <Image src="/signin.png" />
+        <Image src="/signin.png" width="80%" />
         <Grid item md={6} style={{ display: "flex", padding: "5rem" }}>
           <Container
             maxWidth="xs"
@@ -77,7 +77,7 @@ function SignIn() {
                   variant="contained"
                   fullWidth
                   disableElevation
-                //   disabled
+                  //   disabled
                   endIcon={<LoginIcon />}
                   sx={{ m: 1 }}
                 >

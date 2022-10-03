@@ -1,10 +1,10 @@
 import React from "react";
 import { Grid } from "@mui/material";
 
-function Image({ src }) {
+function Image({src , width}) {
   return (
     <Grid item md={6} style={{ display: "flex" }}>
-      <img src={src} alt="background_image" style={{ width: "90%" }} />
+      <img src={src} alt="background_image" style={{ width: width }} />
     </Grid>
   );
 }

@@ -10,7 +10,7 @@ import {
   Typography,
 } from "@mui/material";
 import React from "react";
-import Image from "../components/Image";
+// import Image from "../components/Image";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 
 function SignUp() {
@@ -36,8 +36,11 @@ function SignUp() {
                 <Typography
                   component="b"
                   variant="h5"
-                  color="secondary"
-                  style={{ display: "inline", fontWeight: "600" }}
+                  color="#277BC0"
+                  style={{
+                    display: "inline",
+                    fontWeight: "600"
+                  }}
                 >
                   {" "}
                   Lenxt
@@ -86,12 +89,13 @@ function SignUp() {
                 />
                 <Button
                   type="submit"
-                  color="secondary"
+                  // color="secondary"
+                  style={{ backgroundColor: "#277BC0" }}
                   size="md"
                   variant="contained"
                   fullWidth
                   disableElevation
-                //   disabled
+                  //   disabled
                   endIcon={<LockOpenIcon />}
                   sx={{ m: 1 }}
                 >
@@ -115,7 +119,7 @@ function SignUp() {
           </Container>
         </Grid>
         {/* Image Section */}
-        <Image src="/signup.png" />
+        {/* <Image src="/signup.png" width="90%"/> */}
       </Grid>
     </Box>
   );
