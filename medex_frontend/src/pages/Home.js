@@ -8,10 +8,11 @@ function Home() {
   return (
     <Box
       style={{
-        width: "100vw",
-        height: "91vh",
+        width: "94vw",
+        height: "82vh",
         spacing: 0,
         justify: "space-around",
+        padding:"2rem"
       }}
     >
       <Grid container>

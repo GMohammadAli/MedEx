@@ -10,28 +10,29 @@ function profileSelection() {
         height: "91vh",
         spacing: 0,
         justify: "space-around",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
       }}
     >
       <Box
         style={{
-          // display: "flex",
-          // justifyContent: "center",
-          // alignItems: "center",
           padding: "5rem",
         }}
+        maxWidth="md"
         sx={{ border: 1, borderRadius: "16px" }}
       >
         <Typography
           component="h5"
-          variant="h3"
-          color="secondary"
+          variant="h4"
           gutterBottom
-          sx={{ textAlign: "center" }}
+          sx={{ textAlign: "center", color: "#277BC0" }}
+          fontWeight={500}
         >
           Login Page
         </Typography>
         <Typography
-          variant="h4"
+          variant="h5"
           component="h5"
           gutterBottom
           sx={{ textAlign: "center" }}

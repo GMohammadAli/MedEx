@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types"
 import { Grid } from "@mui/material";
 
 function Image({src , width}) {
@@ -9,4 +10,8 @@ function Image({src , width}) {
   );
 }
 
+Image.propTypes = {
+  src: PropTypes.string.isRequired,
+  width: PropTypes.string.isRequired
+};
 export default Image;

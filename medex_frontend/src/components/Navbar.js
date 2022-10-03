@@ -23,7 +23,7 @@ function Navbar() {
           variant="h4"
           component="div"
           sx={{ flexGrow: 1 }}
-          style={{ color: "#277BC0" }}
+          style={{ color: "#277BC0"}}
           fontWeight={500}
         >
           MedEx
