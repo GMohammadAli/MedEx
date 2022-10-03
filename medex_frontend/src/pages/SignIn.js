@@ -1,7 +1,6 @@
 import {
   Box,
   Button,
-  Container,
   FormGroup,
   Checkbox,
   FormControlLabel,
@@ -11,98 +10,106 @@ import {
 } from "@mui/material";
 import React from "react";
 import LoginIcon from "@mui/icons-material/Login";
-import Image from "../components/Image";
 
 function SignIn() {
   return (
     <Box>
-      <Grid
-        container
-        //direction="column-reverse"
+      <Box
+        style={{
+          width: "100vw",
+          height: "91vh",
+          spacing: 0,
+          justify: "space-around",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
       >
-        {/* Image Section */}
-        <Image src="/signin.png" width="80%" />
-        <Grid item md={6} style={{ display: "flex", padding: "5rem" }}>
-          <Container
-            maxWidth="xs"
-            style={{ justifyContent: "center", alignContent: "center" }}
-          >
-            <Box>
+        <Box
+          style={{
+            padding: "5rem",
+          }}
+          maxWidth="md"
+          sx={{ border: 1, borderRadius: "16px" }}
+        >
+          <Box>
+            <Typography
+              variant="h4"
+              component="h1"
+              gutterBottom
+              style={{ textAlign: "center" }}
+            >
+              Welcome to
               <Typography
-                variant="h5"
                 component="h1"
-                gutterBottom
-                style={{ textAlign: "center" }}
+                variant="h4"
+                color="#277BC0"
+                style={{
+                  display: "inline",
+                  fontWeight: "600",
+                }}
               >
-                Welcome to
-                <Typography
-                  component="b"
-                  variant="h5"
-                  color="secondary"
-                  style={{ display: "inline", fontWeight: "600" }}
-                >
-                  {" "}
-                  Lenxt
-                </Typography>
+                {" "}
+                MedEx
               </Typography>
-              <Typography
-                variant="h5"
-                component="h2"
-                gutterBottom
-                style={{ textAlign: "center" }}
+            </Typography>
+            <Typography
+              variant="h5"
+              component="h2"
+              gutterBottom
+              style={{ textAlign: "center" }}
+            >
+              Sign in to your Account
+            </Typography>
+            <Box component="form" action="/" method="GET">
+              <TextField
+                label="Email Address"
+                variant="outlined"
+                color="secondary"
+                fullWidth
+                required
+                sx={{ m: 1 }}
+              />
+              <TextField
+                label="Password"
+                variant="outlined"
+                color="secondary"
+                fullWidth
+                required
+                sx={{ m: 1 }}
+              />
+              <Button
+                type="submit"
+                style={{ backgroundColor: "#277BC0" }}
+                size="md"
+                variant="contained"
+                fullWidth
+                disableElevation
+                disabled
+                endIcon={<LoginIcon />}
+                sx={{ m: 1 }}
               >
-                Sign in to your Account
-              </Typography>
-              <Box component="form" action="/" method="GET">
-                <TextField
-                  label="Email Address"
-                  variant="outlined"
-                  color="secondary"
-                  fullWidth
-                  required
+                Sign In
+              </Button>
+              <FormGroup>
+                <FormControlLabel
+                  control={<Checkbox defaultUnchecked color="secondary" />}
+                  label="Show Password"
                   sx={{ m: 1 }}
                 />
-                <TextField
-                  label="Password"
-                  variant="outlined"
-                  color="secondary"
-                  fullWidth
-                  required
-                  sx={{ m: 1 }}
-                />
-                <Button
-                  type="submit"
-                  color="secondary"
-                  size="md"
-                  variant="contained"
-                  fullWidth
-                  disableElevation
-                  //   disabled
-                  endIcon={<LoginIcon />}
-                  sx={{ m: 1 }}
-                >
-                  Sign In
-                </Button>
-                <FormGroup>
-                  <FormControlLabel
-                    control={<Checkbox defaultUnchecked color="secondary" />}
-                    label="Show Password"
-                    sx={{ m: 1 }}
-                  />
-                </FormGroup>
-                <Grid container spacing={1}>
-                  <Grid item xs={4}>
-                    <a href="forgotPassword">Forgot Password?</a>
-                  </Grid>
-                  <Grid item xs={8}>
-                    <a href="/SignUp">Don't have an account? Sign Up</a>
-                  </Grid>
+              </FormGroup>
+              <Grid container spacing={2}>
+                <Grid item xs={4}>
+                  <a href="/forgotPassword">Forgot Password?</a>
                 </Grid>
-              </Box>
+                <Grid item xs={8}>
+                  <a href="/SignUp/Patient">Don't have an account? Sign Up</a>
+                </Grid>
+              </Grid>
             </Box>
-          </Container>
-        </Grid>
-      </Grid>
+          </Box>
+        </Box>
+      </Box>
     </Box>
   );
 }

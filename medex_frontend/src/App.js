@@ -7,7 +7,7 @@ import SignUp from "./pages/SignUp";
 import { createTheme, ThemeProvider } from "@mui/material";
 import Navbar from "./components/Navbar";
 import { Box } from "@mui/system";
-import Footer from "./components/Footer";
+// import Footer from "./components/Footer";
 import Main from "./pages/dashboard";
 import AddUser from "./pages/addUser";
 import Dashboard from "./components/Dashboard";
@@ -33,7 +33,7 @@ function App() {
             <Route path="/signUp/:profile" element={<SignUp />} />
             <Route path="/signIn" element={<SignIn />} />
             <Route path="/profile" element={<Profile />} />
-            {/* <Route path="/forgotPassword" element={<ForgotPassword />} /> */}
+            <Route path="/forgotPassword" element={<ForgotPassword />} />
             <Route path="dashboard" element={<Dashboard />}>
               <Route path="" element={<Main />} />
               <Route path="adduser" element={<AddUser />} />

@@ -60,7 +60,7 @@ function SignUp() {
             gutterBottom
             style={{ textAlign: "center" }}
           >
-            Create an Account for {params.profile}
+            Create an Account for a {params.profile}
           </Typography>
           <Box component="form" action="/" method="GET">
             <TextField
@@ -105,13 +105,12 @@ function SignUp() {
             />
             <Button
               type="submit"
-              // color="secondary"
               style={{ backgroundColor: "#277BC0" }}
               size="lg"
               variant="contained"
               fullWidth
               disableElevation
-              //   disabled
+              disabled
               endIcon={<LockOpenIcon />}
               sx={{ m: 1 }}
             >

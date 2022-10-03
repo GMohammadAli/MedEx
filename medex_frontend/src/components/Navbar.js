@@ -1,4 +1,6 @@
-import React, { useContext } from "react";
+import React, { 
+    // useContext 
+} from "react";
 import {
   AppBar,
   Button,
@@ -6,7 +8,9 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import { Login, Logout } from "@mui/icons-material";
+import { Login, 
+    // Logout 
+} from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import Image from "./Image";
 // import { AuthContext } from "../context/AuthContext";
