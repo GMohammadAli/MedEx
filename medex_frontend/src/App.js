@@ -8,6 +8,10 @@ import { createTheme, ThemeProvider } from "@mui/material";
 import Navbar from "./components/Navbar";
 import { Box } from "@mui/system";
 import Footer from "./components/Footer";
+import Main from "./pages/dashboard";
+import AddUser from "./pages/addUser";
+import Dashboard from "./components/Dashboard";
+import profile from "./pages/profileSelection";
 
 const theme = createTheme({
   // backgroundColor:"#FFB200",
@@ -28,7 +32,12 @@ function App() {
             <Route exact path="/" element={<Home />} />
             <Route path="/signUp" element={<SignUp />} />
             <Route path="/signIn" element={<SignIn />} />
+            <Route path="/profileSelection" element={<profile />} />
             {/* <Route path="/forgotPassword" element={<ForgotPassword />} /> */}
+            <Route path="dashboard" element={<Dashboard />}>
+              <Route path="" element={<Main />} />
+              <Route path="adduser" element={<AddUser />} />
+            </Route>
           </Routes>
         </Box>
         {/* <Footer /> */}

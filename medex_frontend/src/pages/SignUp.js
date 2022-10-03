@@ -22,7 +22,7 @@ function SignUp() {
       >
         <Grid item md={6} style={{ display: "flex", padding: "5rem" }}>
           <Container
-            maxWidth="xs"
+            maxWidth="s"
             style={{ justifyContent: "center", alignContent: "center" }}
           >
             <Box>
@@ -43,7 +43,7 @@ function SignUp() {
                   }}
                 >
                   {" "}
-                  Lenxt
+                  MedEx
                 </Typography>
               </Typography>
               <Typography
@@ -64,7 +64,23 @@ function SignUp() {
                   sx={{ m: 1 }}
                 />
                 <TextField
-                  label="Email Address"
+                  label="Email"
+                  variant="outlined"
+                  color="secondary"
+                  fullWidth
+                  required
+                  sx={{ m: 1 }}
+                />
+                <TextField
+                  label="Contact Number"
+                  variant="outlined"
+                  color="secondary"
+                  fullWidth
+                  required
+                  sx={{ m: 1 }}
+                />
+                <TextField
+                  label="Country"
                   variant="outlined"
                   color="secondary"
                   fullWidth
@@ -73,14 +89,6 @@ function SignUp() {
                 />
                 <TextField
                   label="Password"
-                  variant="outlined"
-                  color="secondary"
-                  fullWidth
-                  required
-                  sx={{ m: 1 }}
-                />
-                <TextField
-                  label="Confirm Password"
                   variant="outlined"
                   color="secondary"
                   fullWidth

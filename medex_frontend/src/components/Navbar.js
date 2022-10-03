@@ -2,13 +2,11 @@ import React, { useContext } from "react";
 import {
   AppBar,
   Button,
-  IconButton,
   Stack,
   Toolbar,
   Typography,
 } from "@mui/material";
 import { Login, Logout } from "@mui/icons-material";
-import DensityMediumIcon from "@mui/icons-material/DensityMedium";
 import { useNavigate } from "react-router-dom";
 import Image from "./Image";
 // import { AuthContext } from "../context/AuthContext";
