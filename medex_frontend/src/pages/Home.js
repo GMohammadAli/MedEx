@@ -4,51 +4,38 @@ import Image from "../components/Image";
 import React from "react";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 
-// const useStyles = makeStyles({
-//   subtitle: {
-//     color: "#3867a8",
-//   },
-// });
+import report from "./report.jpeg";
 
 function Home() {
-//   const classes = useStyles();/
   return (
     <Box>
-      <Grid
-        container
-        // direction="column-reverse"
-      >
-        <Grid item md={6} style={{ display: "flex", padding: "5rem" }}>
+      <Grid container>
+        <Grid
+          item
+          md={6}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            padding: "5rem",
+            justifyContent: "center",
+          }}
+        >
           <Container
             maxWidth="xs"
             style={{ justifyContent: "center", alignContent: "center" }}
           >
-            <Typography
-              variant="subtitle2"
-            //   className={classes.subtitle}
-              gutterBottom
-            >
-              Converse. Chat. Connect
-            </Typography>
-            <Typography variant="h4" component="h5" gutterBottom>
-              Chat & discover the world with
-              <Typography
-                component="b"
-                variant="h4"
-                color="secondary"
-                style={{ display: "inline", fontWeight: "600" }}
-              >
-                {" "}
-                Lenxt
-              </Typography>
+            <Typography variant="h4" gutterBottom>
+              Welcome to MedEX
             </Typography>
             <Typography variant="subtitle1" component="div" gutterBottom>
-              Smart application for smart users.connect with ur close ones
-              through lenxt. Getting started with computer vision. Lenxt
-              provides u the speed and ease you need
+              MedEx stands for Medical Exchange which means information exchange
+              of medical reports. It aims to securely share patients’
+              information such as their medical history and health-related
+              issues.
             </Typography>
             <Button
               type="submit"
+              style={{ marginTop: "10px" }}
               color="secondary"
               href="/signUp"
               variant="contained"
@@ -60,7 +47,7 @@ function Home() {
           </Container>
         </Grid>
         {/* Image Section */}
-        <Image src="/landing.png" />
+        <Image src={report} />
       </Grid>
     </Box>
   );

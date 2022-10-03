@@ -22,7 +22,7 @@ function SignUp() {
       >
         <Grid item md={6} style={{ display: "flex", padding: "5rem" }}>
           <Container
-            maxWidth="xs"
+            maxWidth="s"
             style={{ justifyContent: "center", alignContent: "center" }}
           >
             <Box>
@@ -40,7 +40,7 @@ function SignUp() {
                   style={{ display: "inline", fontWeight: "600" }}
                 >
                   {" "}
-                  Lenxt
+                  MedEx
                 </Typography>
               </Typography>
               <Typography
@@ -61,7 +61,23 @@ function SignUp() {
                   sx={{ m: 1 }}
                 />
                 <TextField
-                  label="Email Address"
+                  label="Email"
+                  variant="outlined"
+                  color="secondary"
+                  fullWidth
+                  required
+                  sx={{ m: 1 }}
+                />
+                <TextField
+                  label="Contact Number"
+                  variant="outlined"
+                  color="secondary"
+                  fullWidth
+                  required
+                  sx={{ m: 1 }}
+                />
+                <TextField
+                  label="Country"
                   variant="outlined"
                   color="secondary"
                   fullWidth
@@ -76,14 +92,6 @@ function SignUp() {
                   required
                   sx={{ m: 1 }}
                 />
-                <TextField
-                  label="Confirm Password"
-                  variant="outlined"
-                  color="secondary"
-                  fullWidth
-                  required
-                  sx={{ m: 1 }}
-                />
                 <Button
                   type="submit"
                   color="secondary"
@@ -91,7 +99,7 @@ function SignUp() {
                   variant="contained"
                   fullWidth
                   disableElevation
-                //   disabled
+                  //   disabled
                   endIcon={<LockOpenIcon />}
                   sx={{ m: 1 }}
                 >
