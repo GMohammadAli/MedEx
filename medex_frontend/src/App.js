@@ -36,7 +36,7 @@ function App() {
             <Route path="/forgotPassword" element={<ForgotPassword />} />
             <Route path="dashboard" element={<Dashboard />}>
               <Route path="" element={<Main />} />
-              <Route path="adduser" element={<AddUser />} />
+              <Route path="verify" element={<AddUser />} />
             </Route>
           </Routes>
         </Box>

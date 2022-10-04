@@ -22,7 +22,7 @@ export const Sidebar = (
     </Link>
     <Link
       style={{ textDecoration: "none", color: "#000", fontSize: "1rem" }}
-      to="adduser"
+      to="verify"
     >
       <ListItemButton>
         <ListItemIcon>
