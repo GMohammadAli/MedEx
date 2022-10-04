@@ -105,12 +105,16 @@ export default function AddUser() {
                 Documents Required*
               </Typography>
               <Grid item xs={12}>
-                <Button variant="contained" component="label">
+                <Button
+                  variant="contained"
+                  component="label"
+                  style={{ backgroundColor: "#277BC0" }}
+                >
                   Upload Aadhar Card
                   <input type="file" hidden />
                 </Button>
                 <Button
-                  style={{ marginLeft: "20px" }}
+                  style={{ marginLeft: "20px", backgroundColor: "#277BC0" }}
                   variant="contained"
                   component="label"
                 >
@@ -118,7 +122,7 @@ export default function AddUser() {
                   <input type="file" hidden />
                 </Button>
                 <Button
-                  style={{ marginLeft: "20px" }}
+                  style={{ marginLeft: "20px", backgroundColor: "#277BC0" }}
                   variant="contained"
                   component="label"
                 >

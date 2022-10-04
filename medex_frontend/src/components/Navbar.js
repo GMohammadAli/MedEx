@@ -27,7 +27,7 @@ function Navbar() {
           variant="h4"
           component="div"
           sx={{ flexGrow: 1 }}
-          style={{ color: "#277BC0"}}
+          style={{ color: "#277BC0" }}
           fontWeight={500}
         >
           MedEx
@@ -40,6 +40,14 @@ function Navbar() {
             fontWeight={500}
           >
             Home
+          </Button>
+          <Button
+            onClick={() => navigate("/dashboard/verify")}
+            color="inherit"
+            style={{ color: "#277BC0" }}
+            fontWeight={500}
+          >
+            Dashboard
           </Button>
           {/* <Button onClick={() => navigate("/addBlog")} color="inherit">
             Add Blog
