@@ -34,12 +34,14 @@ function App() {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     setProvider(provider);
 
-    const network = await provider.getNetwork();
+    // const network = await provider.getNetwork();
     const medEx = new ethers.Contract(
-      config[network.chainId].MedEx.address,
+      config[31337].MedEx.address,
       medExAbi,
       provider
     );
+    console.log(medEx);
+    setMedEx(medEx)
 
     const accounts = await window.ethereum.request({
       method: "eth_requestAccounts",
@@ -69,7 +71,9 @@ function App() {
             <Route exact path="/" element={<Home />} />
             <Route
               path="/signUp/:profile"
-              element={<SignUp address={contractAddress} state={state} />}
+              element={
+                <SignUp address={config[31337].MedEx.address} state={medEx} />
+              }
             />
             <Route path="/signIn" element={<SignIn />} />
             <Route path="/profile" element={<Profile account={account} />} />

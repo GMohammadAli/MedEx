@@ -35,20 +35,27 @@ function SignUp({address, state}) {
 
    const onSubmit = async (e) => {
     e.preventDefault()
-    const {contract} = state;
+    const contract = state;
     
-    const amount = { value: ethers.utils.parseEther("0.00001") };
-    const transaction = await contract.docterRegistration(
+    const signer = await contract.provider.getSigner();
+    // const amount = { value: ethers.utils.parseEther("0.00001") };
+    const transaction = await contract.connect(signer).docterRegistration(
       formData.Doctor_name,
       formData.doctor_id,
       formData.doc_specialization,
       formData.Hospital_name,
       formData.Hospital_id,
-      amount
+      // amount
     );
     await transaction.wait();
 
     console.log("Transaction is Done");
+    const transaction2 = await contract.connect(signer).getDoctor(
+      formData.doctor_id
+    );
+    await transaction2.wait();
+
+    console.log(transaction2)
    }
 
   return (
