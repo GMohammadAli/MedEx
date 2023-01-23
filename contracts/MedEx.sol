@@ -66,17 +66,17 @@ contract medEx {
 
     //Adding the doctor
     function docterRegistration(
-        string memory Doctor_name,
+        // string memory Doctor_name,
         address doctor_id,
-        string memory doc_specializaton,
+        // string memory doc_specializaton,
         string memory Hospital_Name,
         uint Hospital_id
     ) public {
         require(doctor_id != p_id, "Doctor cannot be patient");
         Doctor memory docs;
-        docs.DocName = Doctor_name;
+        docs.DocName = "Ali";
         docs.DocId = doctor_id;
-        docs.Doc_spec = doc_specializaton;
+        docs.Doc_spec = "MD Surgeon";
         docs.Hos_Name = Hospital_Name;
         docs.Hos_id = Hospital_id;
 

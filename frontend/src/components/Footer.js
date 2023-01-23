@@ -15,7 +15,7 @@ function Footer() {
       <Grid container spacing={3}>
         <Grid item xs={5}>
           <Typography sx={{ m: 2, textAlign: "center" }} color="textSecondary">
-            Copyright <sup>©</sup> 2022 All rights reserved
+            Copyright <sup>©</sup> 2023 All rights reserved
           </Typography>
         </Grid>
         <Grid item xs={7}>
