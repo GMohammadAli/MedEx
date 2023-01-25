@@ -27,30 +27,7 @@
         "type": "uint256"
       }
     ],
-    "name": "PatientReg",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "string",
-        "name": "_labname",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "_reco_hospitalname",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "_reco_docname",
-        "type": "string"
-      }
-    ],
-    "name": "RegDiagnostic",
+    "name": "PatientRegistration",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -151,6 +128,29 @@
     "inputs": [
       {
         "internalType": "string",
+        "name": "_labname",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_reco_hospitalname",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_reco_docname",
+        "type": "string"
+      }
+    ],
+    "name": "diagnosticCenterRegistration",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
         "name": "Doctor_name",
         "type": "string"
       },
@@ -214,6 +214,25 @@
         "internalType": "uint256",
         "name": "Hos_id",
         "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_docId",
+        "type": "address"
+      }
+    ],
+    "name": "getDoctor",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
       }
     ],
     "stateMutability": "view",

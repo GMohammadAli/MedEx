@@ -33,8 +33,7 @@ function App() {
   const loadBlockchainData = async () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     setProvider(provider);
-
-    // const network = await provider.getNetwork();
+    
     const medEx = new ethers.Contract(
       config[31337].MedEx.address,
       medExAbi,

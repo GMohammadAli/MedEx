@@ -66,17 +66,17 @@ contract medEx {
 
     //Adding the doctor
     function docterRegistration(
-        // string memory Doctor_name,
+        string memory Doctor_name,
         address doctor_id,
-        // string memory doc_specializaton,
+        string memory doc_specializaton,
         string memory Hospital_Name,
         uint Hospital_id
     ) public {
         require(doctor_id != p_id, "Doctor cannot be patient");
         Doctor memory docs;
-        docs.DocName = "Ali";
+        docs.DocName = Doctor_name;
         docs.DocId = doctor_id;
-        docs.Doc_spec = "MD Surgeon";
+        docs.Doc_spec = doc_specializaton;
         docs.Hos_Name = Hospital_Name;
         docs.Hos_id = Hospital_id;
 
@@ -124,7 +124,7 @@ contract medEx {
     }
 
     //Registering Diagnostic Centre
-    function RegDiagnostic(
+    function diagnosticCenterRegistration(
         string memory _labname,
         string memory _reco_hospitalname,
         string memory _reco_docname
@@ -139,7 +139,7 @@ contract medEx {
         dcentres[dc.lab_id] = dc;
     }
 
-    function PatientReg(
+    function PatientRegistration(
         string memory _patientname,
         address _pid,
         uint _age,
@@ -157,5 +157,9 @@ contract medEx {
         p.contact = _contact;
 
         patients[_pid] = p;
+    }
+
+    function getDoctor(address _docId) public view returns(string memory) {
+        return doctors[_docId].DocName;
     }
 }
