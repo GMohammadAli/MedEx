@@ -1,74 +1,59 @@
-import React, { createContext, useState } from "react";
-import axios from "axios";
-import { useLocalStorage } from "../Hooks/useLocalStorage";
+import React, { createContext, useEffect, useState } from "react";
+// import axios from "axios";
+// import { useLocalStorage } from "../Hooks/useLocalStorage";
+import medExAbi from "../contracts/medEx.json";
+import config from "../config.json";
+import { ethers } from "ethers";
 
 const ContractContext = createContext();
 
 function ContractProvider({ children }) {
-  const [user, setUser] = useLocalStorage("user", {});
-  const [users, setUsers] = useState([]);
-  const [token, setToken] = useLocalStorage("token", "");
-  const headers = {
-    Authorization: token,
-    "Content-Type": "application/json",
-  };
+  const [provider, setProvider] = useState(null);
+  const [account, setAccount] = useState(null);
+  const [medEx, setMedEx] = useState(null);
 
-  const [isAuth, setIsAuth] = useState(() => {
-    if (user != null && token !== "") {
-      return true;
-    } else {
-      return false;
-    }
-  });
+  const loadBlockchainData = async () => {
 
-  const registerUser = async (user) => {
-    await axios
-      .post(`${process.env.REACT_APP_BACKEND_URL}/users`, user)
-      .then((response) => {
-        setUser(response.data.user);
-        setToken(response.data.token);
-        setIsAuth(true);
-      })
-      .catch((err) => {
-        console.log(err);
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    setProvider(provider)
+
+    const network = await provider.getNetwork();
+    const medEx =  new ethers.Contract(config[network.chainId].MedEx.address, medExAbi, provider);
+    setMedEx(medEx);
+
+    const accounts = await window.ethereum.request({
+      method: "eth_requestAccounts",
+    });
+    const account = ethers.utils.getAddress(accounts[0]);
+    setAccount(account)
+
+    window.ethereum.on("accountsChanged", async () => {
+      const accounts = await window.ethereum.request({
+        method: "eth_requestAccounts",
       });
+      const account = ethers.utils.getAddress(accounts[0]);
+      setAccount(account);
+    });
   };
 
-  const loginUser = async (user) => {
-    await axios
-      .post(`${process.env.REACT_APP_BACKEND_URL}/auth/login`, user)
-      .then((response) => {
-        setUser(response.data.user);
-        setToken(response.data.token);
-        setIsAuth(true);
-      })
-      .catch((err) => {
-        console.log(err);
-        setIsAuth(false);
-      });
-  };
-
-  const getUsers = async () => {
-    await axios
-      .get(`${process.env.REACT_APP_BACKEND_URL}/users/`, { headers })
-      .then((response) => {
-        setUsers(response.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  const logout = () => {
-    setIsAuth(false);
-    setUser({});
-    setToken("");
-  };
-
+  useEffect(() => { 
+    loadBlockchainData();
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
+  ///----------------------------------
+  
   return (
     <ContractContext.Provider
       value={{
-        
+        medEx: medEx,
+        account: account,
+        provider: provider
+        // user,
+        // profileStatus, doctor or patient or center
+        // registration specific to the user
+        //
       }}
     >
       {children}

@@ -1,5 +1,5 @@
 import React, { createContext, useState } from "react";
-import axios from "axios";
+// import axios from "axios";
 import { useLocalStorage } from "../Hooks/useLocalStorage";
 
 const AuthContext = createContext();
@@ -21,43 +21,43 @@ function AuthProvider({ children }) {
     }
   });
 
-  const registerUser = async (user) => {
-    await axios
-      .post(`${process.env.REACT_APP_BACKEND_URL}/users`, user)
-      .then((response) => {
-        setUser(response.data.user);
-        setToken(response.data.token);
-        setIsAuth(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  // const registerUser = async (user) => {
+  //   await axios
+  //     .post(`${process.env.REACT_APP_BACKEND_URL}/users`, user)
+  //     .then((response) => {
+  //       setUser(response.data.user);
+  //       setToken(response.data.token);
+  //       setIsAuth(true);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
-  const loginUser = async (user) => {
-    await axios
-      .post(`${process.env.REACT_APP_BACKEND_URL}/auth/login`, user)
-      .then((response) => {
-        setUser(response.data.user);
-        setToken(response.data.token);
-        setIsAuth(true);
-      })
-      .catch((err) => {
-        console.log(err);
-        setIsAuth(false);
-      });
-  };
+  // const loginUser = async (user) => {
+  //   await axios
+  //     .post(`${process.env.REACT_APP_BACKEND_URL}/auth/login`, user)
+  //     .then((response) => {
+  //       setUser(response.data.user);
+  //       setToken(response.data.token);
+  //       setIsAuth(true);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //       setIsAuth(false);
+  //     });
+  // };
 
-  const getUsers = async () => {
-    await axios
-      .get(`${process.env.REACT_APP_BACKEND_URL}/users/`, { headers })
-      .then((response) => {
-        setUsers(response.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  // const getUsers = async () => {
+  //   await axios
+  //     .get(`${process.env.REACT_APP_BACKEND_URL}/users/`, { headers })
+  //     .then((response) => {
+  //       setUsers(response.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
   const logout = () => {
     setIsAuth(false);
@@ -72,9 +72,9 @@ function AuthProvider({ children }) {
         user: user,
         users: users,
         token: token,
-        getUsers: getUsers,
-        registerUser: registerUser,
-        loginUser: loginUser,
+        // getUsers: getUsers,
+        // registerUser: registerUser,
+        // loginUser: loginUser,
         logout: logout,
       }}
     >

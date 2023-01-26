@@ -9,12 +9,15 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 import { useParams } from "react-router-dom";
-import { Contract } from "ethers";
+import { ContractContext } from "../context/contractContext";
 
 function SignUp({address, state}) {
+  const contractContext = useContext(ContractContext);
+
+
   const [formData, setFormData] = useState({
     Doctor_name: "",
     doctor_id: address,
@@ -35,28 +38,30 @@ function SignUp({address, state}) {
 
    const onSubmitDoctor = async (e) => {
      e.preventDefault();
-     const contract = state;
-
-    const signer = await contract.provider.getSigner();
-    const transaction = await contract
-      .connect(signer)
-      .docterRegistration(
-        formData.Doctor_name,
-        formData.doctor_id,
-        formData.doc_specialization,
-        formData.Hospital_name,
-        formData.Hospital_id
-      );
-    await transaction.wait();
-    console.log("Transaction is Done");
-    console.log(contract)
+     const contract  = contractContext.medEx
+     
+    try{
+      const signer = await contract.provider.getSigner(); 
+      const transaction = await contract
+        .connect(signer)
+        .docterRegistration(
+          formData.Doctor_name,
+          formData.doctor_id,
+          formData.doc_specialization,
+          formData.Hospital_name,
+          formData.Hospital_id
+        )
+      await transaction.wait();
+      console.log("Transaction is Done"); 
+    } catch(err) {console.log(err)}
+    
     //  After Manipulation of Contract
-     //  const transaction2 = await contract
-     //    .connect(signer)
-     //    .getDoctor(formData.doctor_id);
-     //  await transaction2.wait();
+      // const transaction2 = await contract
+      //   .connect(signer)
+      //   .getDoctor(formData.doctor_id);
+      // await transaction2.wait();
 
-     //  console.log(transaction2);
+      // console.log(transaction2);
    }
 
    const onSubmitDiagnosticCenter = async (e) => {
@@ -111,6 +116,7 @@ function SignUp({address, state}) {
     //  console.log(transaction2);
    };
 
+
   return (
     <Box>
       <Box
@@ -138,7 +144,7 @@ function SignUp({address, state}) {
               >
                 Welcome to
                 <Typography
-                  component="h2"
+                  component="div"
                   variant="h4"
                   color="#277BC0"
                   style={{
@@ -162,7 +168,7 @@ function SignUp({address, state}) {
                 component="form"
                 action="/"
                 method="GET"
-                onSubmit={(e) => onSubmitDiagnosticCenter(e)}
+                onSubmit={(e) => onSubmitDoctor(e)}
               >
                 <TextField
                   label="Full Name"
