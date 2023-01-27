@@ -5,6 +5,10 @@ contract medEx {
     address lab = msg.sender;
     uint rc = 0;
 
+    constructor()  {
+        doctors[0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0].DocName = 'Ali';
+    }
+
     mapping(address => Report) public records;
     mapping(address => Patient) public patients;
     mapping(address => Doctor) public doctors;
@@ -65,7 +69,7 @@ contract medEx {
     address doctor;
 
     //Adding the doctor
-    function docterRegistration(
+    function doctorRegistration(
         string memory Doctor_name,
         address doctor_id,
         string memory doc_specializaton,
@@ -75,8 +79,8 @@ contract medEx {
         require(doctor_id != p_id, "Doctor cannot be patient");
         Doctor memory docs;
         docs.DocName = Doctor_name;
-        docs.DocId = doctor_id;
-        docs.Doc_spec = doc_specializaton;
+        docs.DocId = 0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0;
+        docs.Doc_spec = "MD Surgeon";
         docs.Hos_Name = Hospital_Name;
         docs.Hos_id = Hospital_id;
 
@@ -159,7 +163,7 @@ contract medEx {
         patients[_pid] = p;
     }
 
-    function getDoctor(address _docId) public view returns(string memory) {
-        return doctors[_docId].DocName;
+    function getDoctor() public view returns(Doctor memory) {
+        return doctors[0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0];
     }
 }

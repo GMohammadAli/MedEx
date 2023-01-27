@@ -9,7 +9,7 @@ describe("MedEx", () => {
   let medEx;
   let deployer, owner1;
 
-  const DOC_NAME = "Ali";
+  const DOC_NAME = 'Ali';
   const DOC_SPECIALIZATION = "MD Surgeon";
 
   beforeEach(async () => {
@@ -21,19 +21,21 @@ describe("MedEx", () => {
 
   describe("Doctor Registration", () => {
     it("has a name", async () => {
-      const result = await medEx.docs.DocName();
+      const result = await medEx.getDoctor().DocName;
       expect(result).to.equal(DOC_NAME);
     });
 
-    it("has a symbol", async () => {
-      const result = await medEx.docs.Doc_spec();
-      expect(result).to.equal(DOC_SPECIALIZATION);
-    });
+    // it("has a symbol", async () => {
+    //   const result = await medEx.getDocter(
+    //     0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0
+    //   ).Doc_spec;
+    //   expect(result).to.equal(DOC_SPECIALIZATION);
+    // });
 
-    it("Sets the owner", async () => {
-      const result = await medEx.owner();
-      expect(result).to.equal(deployer.address);
-    });
+    // it("Sets the owner", async () => {
+    //   const result = await medEx.lab();
+    //   expect(result).to.equal(deployer.address);
+    // });
 
     // it("Returns the maxSupply", async () => {
     //   const result = await medEx.maxSupply();

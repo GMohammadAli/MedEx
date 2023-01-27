@@ -14,13 +14,12 @@ import LockOpenIcon from "@mui/icons-material/LockOpen";
 import { useParams } from "react-router-dom";
 import { ContractContext } from "../context/contractContext";
 
-function SignUp({address, state}) {
+function SignUp() {
   const contractContext = useContext(ContractContext);
-
 
   const [formData, setFormData] = useState({
     Doctor_name: "",
-    doctor_id: address,
+    doctor_id: contractContext.account,
     doc_specialization: "",
     Hospital_name: "",
     Hospital_id: "",
@@ -38,23 +37,24 @@ function SignUp({address, state}) {
 
    const onSubmitDoctor = async (e) => {
      e.preventDefault();
-     const contract  = contractContext.medEx
-     
-    try{
+     const contract = contractContext.medEx
+     console.log(contractContext)
+
       const signer = await contract.provider.getSigner(); 
+      console.log(signer)
+      console.log(contract);
+
       const transaction = await contract
         .connect(signer)
-        .docterRegistration(
+        .doctorRegistration(
           formData.Doctor_name,
           formData.doctor_id,
           formData.doc_specialization,
           formData.Hospital_name,
           formData.Hospital_id
-        )
+        );
       await transaction.wait();
       console.log("Transaction is Done"); 
-    } catch(err) {console.log(err)}
-    
     //  After Manipulation of Contract
       // const transaction2 = await contract
       //   .connect(signer)
@@ -66,7 +66,7 @@ function SignUp({address, state}) {
 
    const onSubmitDiagnosticCenter = async (e) => {
      e.preventDefault();
-     const contract = state;
+     const contract = contractContext;
 
      const signer = await contract.provider.getSigner();
      const transaction = await contract
@@ -91,7 +91,7 @@ function SignUp({address, state}) {
 
    const onSubmitPatient = async (e) => {
      e.preventDefault();
-     const contract = state;
+     const contract = contractContext;
 
      const signer = await contract.provider.getSigner();
      const transaction = await contract
@@ -115,7 +115,6 @@ function SignUp({address, state}) {
 
     //  console.log(transaction2);
    };
-
 
   return (
     <Box>
