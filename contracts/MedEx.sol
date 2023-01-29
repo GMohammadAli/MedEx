@@ -143,7 +143,7 @@ contract medEx {
         dcentres[dc.lab_id] = dc;
     }
 
-    function PatientRegistration(
+    function patientRegistration(
         string memory _patientname,
         address _pid,
         uint _age,

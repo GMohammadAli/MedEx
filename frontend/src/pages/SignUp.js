@@ -9,13 +9,16 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 import { useParams } from "react-router-dom";
 import { ContractContext } from "../context/contractContext";
+import { AuthContext } from "../context/authContext";
 
 function SignUp() {
   const contractContext = useContext(ContractContext);
+  const authContext = useContext(AuthContext);
+
 
   const [formData, setFormData] = useState({
     Doctor_name: "",
@@ -38,82 +41,20 @@ function SignUp() {
    const onSubmitDoctor = async (e) => {
      e.preventDefault();
      const contract = contractContext.medEx
-     console.log(contractContext)
-
-      const signer = await contract.provider.getSigner(); 
-      console.log(signer)
-      console.log(contract);
-
-      const transaction = await contract
-        .connect(signer)
-        .doctorRegistration(
-          formData.Doctor_name,
-          formData.doctor_id,
-          formData.doc_specialization,
-          formData.Hospital_name,
-          formData.Hospital_id
-        );
-      await transaction.wait();
-      console.log("Transaction is Done"); 
-    //  After Manipulation of Contract
-      // const transaction2 = await contract
-      //   .connect(signer)
-      //   .getDoctor(formData.doctor_id);
-      // await transaction2.wait();
-
-      // console.log(transaction2);
+     await authContext.doctorRegistration(contract , formData)
    }
 
    const onSubmitDiagnosticCenter = async (e) => {
      e.preventDefault();
-     const contract = contractContext;
-
-     const signer = await contract.provider.getSigner();
-     const transaction = await contract
-       .connect(signer)
-       .diagnosticCenterRegistration(
-         formData._labname ="Maa Chuda",
-         formData._reco_hospitalname ="Desh Lootene Wala",
-         formData._reco_docname = "Maa Chuda",
-       );
-     await transaction.wait();
-     console.log("Transaction is Done");
-     console.log(contract);
-     //  After Manipulation of Contract
-     //  const transaction2 = await contract
-     //    .connect(signer)
-     //    .getDoctor(formData.doctor_id);
-     //  await transaction2.wait();
-
-     //  console.log(transaction2);
+     const contract = contractContext.medEx
+     await authContext.diagnosticCenterRegistration(contract, formData);
    };
 
 
    const onSubmitPatient = async (e) => {
      e.preventDefault();
-     const contract = contractContext;
-
-     const signer = await contract.provider.getSigner();
-     const transaction = await contract
-       .connect(signer)
-       .PatientRegistration(
-         formData._patientname = "Ali",
-         formData._pid ="1234",
-         formData._age = "21",
-         formData._gender = "M",
-         formData._contact = "855414613184"
-       );
-     await transaction.wait();
-
-     console.log("Transaction is Done");
-     console.log(contract)
-    //  After Manipulation of Contract 
-    //  const transaction2 = await contract
-    //    .connect(signer)
-    //    .getDoctor(formData.doctor_id);
-    //  await transaction2.wait();
-
-    //  console.log(transaction2);
+     const contract = contractContext.medEx
+     await authContext.patientRegistration(contract, formData);
    };
 
   return (
@@ -167,7 +108,7 @@ function SignUp() {
                 component="form"
                 action="/"
                 method="GET"
-                onSubmit={(e) => onSubmitDoctor(e)}
+                onSubmit={(e) => onSubmitPatient(e)}
               >
                 <TextField
                   label="Full Name"

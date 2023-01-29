@@ -21,6 +21,51 @@ function AuthProvider({ children }) {
     }
   });
 
+  const doctorRegistration = async (contract, formData) => {
+    const signer = await contract.provider.getSigner();
+    const transaction = await contract
+      .connect(signer)
+      .doctorRegistration(
+        formData.Doctor_name,
+        formData.doctor_id,
+        formData.doc_specialization,
+        formData.Hospital_name,
+        formData.Hospital_id
+      );
+    await transaction.wait();
+    console.log("Transaction is Done"); 
+  }
+
+  const diagnosticCenterRegistration = async (contract, formData) => {
+    const signer = await contract.provider.getSigner();
+    const transaction = await contract
+      .connect(signer)
+      .diagnosticCenterRegistration(
+        (formData._labname = "Maa Chuda"),
+        (formData._reco_hospitalname = "Desh Lootene Wala"),
+        (formData._reco_docname = "Maa Chuda")
+      );
+    await transaction.wait();
+    console.log("Transaction is Done");
+  }
+
+  const patientRegistration = async (contract, formData) => {
+    console.log(contract)
+     const signer = await contract.provider.getSigner();
+     const transaction = await contract
+       .connect(signer)
+       .PatientRegistration(
+         formData.Doctor_name,
+         "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+         1234,
+         formData.Hospital_name,
+         12356643
+       );
+    await transaction.wait();
+
+    console.log("Transaction is Done");
+  }
+
   // const registerUser = async (user) => {
   //   await axios
   //     .post(`${process.env.REACT_APP_BACKEND_URL}/users`, user)
@@ -72,9 +117,17 @@ function AuthProvider({ children }) {
         user: user,
         users: users,
         token: token,
+        doctorRegistration: doctorRegistration,
+        diagnosticCenterRegistration: diagnosticCenterRegistration,
+        patientRegistration: patientRegistration,
         // getUsers: getUsers,
         // registerUser: registerUser,
         // loginUser: loginUser,
+
+        // user,
+        // profileStatus, doctor or patient or center
+        // registration specific to the user
+        //
         logout: logout,
       }}
     >

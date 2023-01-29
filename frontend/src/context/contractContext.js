@@ -52,12 +52,7 @@ function ContractProvider({ children }) {
       value={{
         medEx: medEx,
         account: account,
-        provider: provider,
-        loadBlockchainData: loadBlockchainData
-        // user,
-        // profileStatus, doctor or patient or center
-        // registration specific to the user
-        //
+        provider: provider
       }}
     >
       {children}
