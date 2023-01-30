@@ -108,7 +108,7 @@ function SignUp() {
                 component="form"
                 action="/"
                 method="GET"
-                onSubmit={(e) => onSubmitPatient(e)}
+                onSubmit={(e) => onSubmitDiagnosticCenter(e)}
               >
                 <TextField
                   label="Full Name"

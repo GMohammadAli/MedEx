@@ -40,10 +40,7 @@ function AuthProvider({ children }) {
     const signer = await contract.provider.getSigner();
     const transaction = await contract
       .connect(signer)
-      .diagnosticCenterRegistration(
-        (formData._labname = "Maa Chuda"),
-        (formData._reco_hospitalname = "Desh Lootene Wala"),
-        (formData._reco_docname = "Maa Chuda")
+      .diagnosticCenterRegistration("Maa Chuda","Desh Lootene Wala","Maa Chuda"
       );
     await transaction.wait();
     console.log("Transaction is Done");
@@ -54,12 +51,13 @@ function AuthProvider({ children }) {
      const signer = await contract.provider.getSigner();
      const transaction = await contract
        .connect(signer)
-       .PatientRegistration(
-         formData.Doctor_name,
-         "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
-         1234,
-         formData.Hospital_name,
-         12356643
+       .patientRegistration(
+         "Ali",
+         "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+         "21",
+         "M",
+         "12356643",
+         {gasLimit: 27000}
        );
     await transaction.wait();
 

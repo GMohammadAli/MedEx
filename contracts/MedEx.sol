@@ -1,13 +1,9 @@
-//SPDX-License-Identifier : UNLICENSED
+//SPDX-License-Identifier:UNLICENSED
 pragma solidity >=0.5.0 <0.9.0;
 
 contract medEx {
     address lab = msg.sender;
     uint rc = 0;
-
-    constructor()  {
-        doctors[0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0].DocName = 'Ali';
-    }
 
     mapping(address => Report) public records;
     mapping(address => Patient) public patients;

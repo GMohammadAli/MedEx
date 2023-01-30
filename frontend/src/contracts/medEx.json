@@ -2,39 +2,6 @@
   {
     "inputs": [
       {
-        "internalType": "string",
-        "name": "_patientname",
-        "type": "string"
-      },
-      {
-        "internalType": "address",
-        "name": "_pid",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_age",
-        "type": "uint256"
-      },
-      {
-        "internalType": "string",
-        "name": "_gender",
-        "type": "string"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_contact",
-        "type": "uint256"
-      }
-    ],
-    "name": "PatientRegistration",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
         "internalType": "address",
         "name": "Patient_id",
         "type": "address"
@@ -220,22 +187,76 @@
     "type": "function"
   },
   {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_docId",
-        "type": "address"
-      }
-    ],
+    "inputs": [],
     "name": "getDoctor",
     "outputs": [
       {
-        "internalType": "string",
+        "components": [
+          {
+            "internalType": "string",
+            "name": "DocName",
+            "type": "string"
+          },
+          {
+            "internalType": "address",
+            "name": "DocId",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "Doc_spec",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "Hos_Name",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "Hos_id",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct medEx.Doctor",
         "name": "",
-        "type": "string"
+        "type": "tuple"
       }
     ],
     "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "_patientname",
+        "type": "string"
+      },
+      {
+        "internalType": "address",
+        "name": "_pid",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_age",
+        "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "_gender",
+        "type": "string"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_contact",
+        "type": "uint256"
+      }
+    ],
+    "name": "patientRegistration",
+    "outputs": [],
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
