@@ -8,10 +8,10 @@ import { createTheme, ThemeProvider } from "@mui/material";
 import Navbar from "./components/Navbar";
 import { Box } from "@mui/system";
 // import Footer from "./components/Footer";
-import Main from "./pages/dashboard";
-import AddUser from "./pages/addUser";
+import Main from "./pages/Dashboard";
+import AddUser from "./pages/AddUser";
 import Dashboard from "./components/Dashboard";
-import Profile from "./pages/profileSelection";
+import Profile from "./pages/ProfileSelection";
 import ContractProvider from "./context/contractContext";
 import AuthProvider from "./context/authContext";
 

@@ -5,7 +5,12 @@ import { useLocalStorage } from "../Hooks/useLocalStorage";
 const AuthContext = createContext();
 
 function AuthProvider({ children }) {
-  const [user, setUser] = useLocalStorage("user", {});
+  // const [user, setUser] = useLocalStorage("user", {});
+  const [user, setUser] = useState({
+    username:"",
+    emailAddress: "",
+    profileStatus: ""
+  })
   const [users, setUsers] = useState([]);
   const [token, setToken] = useLocalStorage("token", "");
   const headers = {

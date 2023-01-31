@@ -1,13 +1,20 @@
-import * as React from "react";
+import React, { useContext } from "react";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import PropTypes from "prop-types"
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/authContext";
 
-function ReviewCard({profileTitle, imgSrc }) {
+function ReviewCard({profileTitle, imgSrc , username, emailAddress}) {
     const navigate  = useNavigate()
+    const authContext = useContext(AuthContext);
+    authContext.user = {
+      username: username,
+      emailAddress: emailAddress,
+      profileStatus: profileTitle
+    }
 
   return (
     <Card sx={{ maxWidth: 345, borderRadius: "20px" }}>
