@@ -38,7 +38,7 @@ function AuthProvider({ children }) {
         formData.Hospital_id
       );
     await transaction.wait();
-    console.log("Transaction is Done"); 
+    console.log("Registration is Done for Doctor"); 
   }
 
   const diagnosticCenterRegistration = async (contract, formData) => {
@@ -48,11 +48,10 @@ function AuthProvider({ children }) {
       .diagnosticCenterRegistration("Maa Chuda","Desh Lootene Wala","Maa Chuda"
       );
     await transaction.wait();
-    console.log("Transaction is Done");
+    console.log("Registration is Done for Diagnostic Center");
   }
 
   const patientRegistration = async (contract, formData) => {
-    console.log(contract)
      const signer = await contract.provider.getSigner();
      const transaction = await contract
        .connect(signer)
@@ -61,12 +60,11 @@ function AuthProvider({ children }) {
          "0x5FbDB2315678afecb367f032d93F642f64180aa3",
          "21",
          "M",
-         "12356643",
-         {gasLimit: 27000}
+         "12356643"
        );
     await transaction.wait();
 
-    console.log("Transaction is Done");
+    console.log("Registration is Done for Patient");
   }
 
   // const registerUser = async (user) => {

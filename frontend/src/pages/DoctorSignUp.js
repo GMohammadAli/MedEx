@@ -11,11 +11,10 @@ import {
 } from "@mui/material";
 import React, { useContext, useState } from "react";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
-import { useParams } from "react-router-dom";
 import { ContractContext } from "../context/contractContext";
 import { AuthContext } from "../context/authContext";
 
-function SignUp() {
+function DoctorSignUp() {
   const contractContext = useContext(ContractContext);
   const authContext = useContext(AuthContext);
 
@@ -29,8 +28,6 @@ function SignUp() {
   });
   const { Doctor_name, doc_specialization, Hospital_name, Hospital_id } =
     formData;
-  const params = useParams()  
-
   const onChange = (e) => {
     setFormData((prevState) => ({
       ...prevState,
@@ -43,19 +40,6 @@ function SignUp() {
      const contract = contractContext.medEx
      await authContext.doctorRegistration(contract , formData)
    }
-
-   const onSubmitDiagnosticCenter = async (e) => {
-     e.preventDefault();
-     const contract = contractContext.medEx
-     await authContext.diagnosticCenterRegistration(contract, formData);
-   };
-
-
-   const onSubmitPatient = async (e) => {
-     e.preventDefault();
-     const contract = contractContext.medEx
-     await authContext.patientRegistration(contract, formData);
-   };
 
   return (
     <Box>
@@ -102,16 +86,16 @@ function SignUp() {
                 gutterBottom
                 style={{ textAlign: "center" }}
               >
-                Create an Account for a {params.profile}
+                Create an Account for a Doctor
               </Typography>
               <Box
                 component="form"
                 action="/"
                 method="GET"
-                onSubmit={(e) => onSubmitDiagnosticCenter(e)}
+                onSubmit={(e) => onSubmitDoctor(e)}
               >
                 <TextField
-                  label="Full Name"
+                  label="Doctor Name"
                   variant="outlined"
                   color="secondary"
                   id="Doctor_name"
@@ -122,17 +106,7 @@ function SignUp() {
                   sx={{ m: 1 }}
                 />
                 <TextField
-                  label="Email"
-                  variant="outlined"
-                  color="secondary"
-                  id="email"
-                  fullWidth
-                  required
-                  onChange={onChange}
-                  sx={{ m: 1 }}
-                />
-                <TextField
-                  label="Your Specialization"
+                  label="Doctor's Specialization"
                   variant="outlined"
                   color="secondary"
                   fullWidth
@@ -161,14 +135,6 @@ function SignUp() {
                   fullWidth
                   id="Hospital_id"
                   value={Hospital_id}
-                  required
-                  sx={{ m: 1 }}
-                />
-                <TextField
-                  label="Password"
-                  variant="outlined"
-                  color="secondary"
-                  fullWidth
                   required
                   sx={{ m: 1 }}
                 />
@@ -207,4 +173,4 @@ function SignUp() {
   );
 }
 
-export default SignUp;
+export default DoctorSignUp;

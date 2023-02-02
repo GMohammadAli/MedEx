@@ -1,5 +1,5 @@
 import React, { 
-    // useContext 
+    useContext 
 } from "react";
 import {
   AppBar,
@@ -9,14 +9,14 @@ import {
   Typography,
 } from "@mui/material";
 import { Login, 
-    // Logout 
+    Logout 
 } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import Image from "./Image";
-// import { AuthContext } from "../context/AuthContext";
+import { ContractContext } from "../context/contractContext";
 
 function Navbar() {
-//   const authContext = useContext(AuthContext);
+  const contractContext = useContext(ContractContext);
   let navigate = useNavigate();
 
   return (
@@ -45,34 +45,35 @@ function Navbar() {
             onClick={() => navigate("/dashboard/verify")}
             color="inherit"
             style={{ color: "#277BC0" }}
+            disabled
             fontWeight={500}
           >
             Dashboard
           </Button>
-          {/* <Button onClick={() => navigate("/addBlog")} color="inherit">
-            Add Blog
-          </Button> */}
-          {/* {!authContext.isAuth ? ( */}
-          <Button
-            onClick={() => navigate("/SignIn")}
-            color="inherit"
-            endIcon={<Login />}
-            style={{ color: "#277BC0" }}
-            fontWeight={500}
-          >
-            {" "}
-            Login
-          </Button>
-          {/* ) : (
+          {!contractContext.account ? (
             <Button
-              onClick={() => authContext.logout()}
+              onClick={() => navigate("/SignIn")}
               color="inherit"
-              endIcon={<Logout />}
+              endIcon={<Login />}
+              style={{ color: "#277BC0" }}
+              fontWeight={500}
             >
               {" "}
-              {authContext.user.username}
+              Login
             </Button>
-          )} */}
+          ) : (
+            <Button
+              // onClick={() => authContext.logout()}
+              color="inherit"
+              endIcon={<Logout />}
+              style={{ color: "#277BC0" }}
+            >
+              {" "}
+              {contractContext.account.slice(0, 6) +
+                "..." +
+                contractContext.account.slice(38, 42)}
+            </Button>
+          )}
         </Stack>
       </Toolbar>
     </AppBar>
