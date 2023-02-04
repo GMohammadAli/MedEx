@@ -18,13 +18,7 @@ function PatientSignUp() {
   const contractContext = useContext(ContractContext);
   const authContext = useContext(AuthContext);
 
-  const [formData, setFormData] = useState({
-    Doctor_name: "",
-    doctor_id: contractContext.account,
-    doc_specialization: "",
-    Hospital_name: "",
-    Hospital_id: "",
-  });
+  const [formData, setFormData] = useState({});
   const { _patientname, _age, _gender, _contact } = formData;
 
   const onChange = (e) => {

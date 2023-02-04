@@ -13,7 +13,6 @@ contract medEx {
     struct Report {
         string PatientName;
         address patientid;
-        string emailid;
         string Bloodgrp;
         string DOB;
         string gender;
@@ -75,8 +74,8 @@ contract medEx {
         require(doctor_id != p_id, "Doctor cannot be patient");
         Doctor memory docs;
         docs.DocName = Doctor_name;
-        docs.DocId = 0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0;
-        docs.Doc_spec = "MD Surgeon";
+        docs.DocId = doctor_id;
+        docs.Doc_spec = doc_specializaton;
         docs.Hos_Name = Hospital_Name;
         docs.Hos_id = Hospital_id;
 
@@ -89,7 +88,6 @@ contract medEx {
     function addReport(
         address Patient_id,
         string memory Patient_Name,
-        string memory email_id,
         string memory Blood_Group,
         string memory DateOfBirth,
         string memory gender,
@@ -106,7 +104,6 @@ contract medEx {
         Report memory repos;
         repos.PatientName = Patient_Name;
         repos.patientid = Patient_id;
-        repos.emailid = email_id;
         repos.Bloodgrp = Blood_Group;
         repos.DOB = DateOfBirth;
         repos.gender = gender;
@@ -128,7 +125,7 @@ contract medEx {
         string memory _labname,
         string memory _reco_hospitalname,
         string memory _reco_docname
-    ) public onlyLabwala {
+    ) public {
         DiagnosticCenter memory dc;
 
         dc.Lab_name = _labname;
@@ -157,9 +154,5 @@ contract medEx {
         p.contact = _contact;
 
         patients[_pid] = p;
-    }
-
-    function getDoctor() public view returns(Doctor memory) {
-        return doctors[0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0];
     }
 }

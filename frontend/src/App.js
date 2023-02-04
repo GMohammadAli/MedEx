@@ -10,12 +10,15 @@ import { createTheme, ThemeProvider } from "@mui/material";
 import Navbar from "./components/Navbar";
 import { Box } from "@mui/system";
 // import Footer from "./components/Footer";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Main from "./pages/Dashboard";
 import AddUser from "./pages/AddUser";
 import Dashboard from "./components/Dashboard";
 import Profile from "./pages/ProfileSelection";
 import ContractProvider from "./context/contractContext";
 import AuthProvider from "./context/authContext";
+import AddReport from "./pages/AddReport";
 
 const theme = createTheme({
   // backgroundColor:"#FFB200",
@@ -40,7 +43,14 @@ function App() {
                 <Route exact path="/" element={<Home />} />
                 <Route path="/signUp/Doctor" element={<DoctorSignUp />} />
                 <Route path="/signUp/Patient" element={<PatientSignUp />} />
-                <Route path="/signUp/Diagnostic Center" element={<DiagnosticCenterSignUp />} />
+                <Route
+                  path="/signUp/Diagnostic Center"
+                  element={<DiagnosticCenterSignUp />}
+                />
+                <Route
+                  path="/diagnosticCenter/:id/addReport"
+                  element={<AddReport />}
+                />
                 <Route path="/signIn" element={<SignIn />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/forgotPassword" element={<ForgotPassword />} />
@@ -50,6 +60,7 @@ function App() {
                 </Route>
               </Routes>
             </Box>
+            <ToastContainer />
             {/* <Footer /> */}
           </Router>
         </AuthProvider>{" "}

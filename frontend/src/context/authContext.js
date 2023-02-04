@@ -1,6 +1,7 @@
 import React, { createContext, useState } from "react";
 // import axios from "axios";
 import { useLocalStorage } from "../Hooks/useLocalStorage";
+import {toast} from "react-toastify"
 
 const AuthContext = createContext();
 
@@ -27,6 +28,7 @@ function AuthProvider({ children }) {
   });
 
   const doctorRegistration = async (contract, formData) => {
+    try{
     const signer = await contract.provider.getSigner();
     const transaction = await contract
       .connect(signer)
@@ -38,34 +40,69 @@ function AuthProvider({ children }) {
         formData.Hospital_id
       );
     await transaction.wait();
-    console.log("Registration is Done for Doctor"); 
+    toast.success("Registration is Done for Doctor"); 
+    } catch (err) {
+        toast.error(err)
+      }
   }
 
   const diagnosticCenterRegistration = async (contract, formData) => {
+    try{
     const signer = await contract.provider.getSigner();
     const transaction = await contract
       .connect(signer)
       .diagnosticCenterRegistration("Maa Chuda","Desh Lootene Wala","Maa Chuda"
       );
     await transaction.wait();
-    console.log("Registration is Done for Diagnostic Center");
+    toast.success("Registration is Done for Diagnostic Center");
+    } catch (err) {
+      toast.error(err)
+    }
   }
 
   const patientRegistration = async (contract, formData) => {
+    try{
      const signer = await contract.provider.getSigner();
      const transaction = await contract
        .connect(signer)
        .patientRegistration(
          "Ali",
-         "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+         "0x5FbDB2315678afecb367f032d93F642f64",
          "21",
          "M",
          "12356643"
        );
     await transaction.wait();
 
-    console.log("Registration is Done for Patient");
+    toast.success("Registration is Done for Patient");
+    } catch (err) {
+        toast.error(err)
+      }
   }
+
+    const addReport = async (contract, formData) => {
+      try {
+        const signer = await contract.provider.getSigner();
+        const transaction = await contract
+          .connect(signer)
+          .addReport(
+            "0x8626f6940E2eb28930eFb4CeF49B2d1F2C9C1199",
+            formData._patientname,
+            formData.Blood_group,
+            formData.dateOfBirth,
+            formData.gender,
+            formData.Hospital_name,
+            formData.report_type,
+            // formData.symptoms,
+            // formData.allergies,
+            formData.diabetes
+          );
+        await transaction.wait();
+        toast.success("The Report hash been sent to the Patient");
+      } catch (err) {
+        toast.error(err)
+      }
+    };
 
   // const registerUser = async (user) => {
   //   await axios
@@ -121,6 +158,7 @@ function AuthProvider({ children }) {
         doctorRegistration: doctorRegistration,
         diagnosticCenterRegistration: diagnosticCenterRegistration,
         patientRegistration: patientRegistration,
+        addReport: addReport,
         // getUsers: getUsers,
         // registerUser: registerUser,
         // loginUser: loginUser,
