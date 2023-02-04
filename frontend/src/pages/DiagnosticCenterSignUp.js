@@ -20,11 +20,9 @@ function DiagnosticCenterSignUp() {
   const authContext = useContext(AuthContext);
 
   const [formData, setFormData] = useState({
-    Doctor_name: "",
-    doctor_id: contractContext.account,
-    doc_specialization: "",
-    Hospital_name: "",
-    Hospital_id: "",
+    lab_name: "",
+    _reco_hospitalname: "",
+    _reco_docname: "",
   });
   const { lab_name, _reco_hospitalname, _reco_docname } = formData;
 
@@ -98,7 +96,7 @@ function DiagnosticCenterSignUp() {
                   label="Lab's Name"
                   variant="outlined"
                   color="secondary"
-                  id="Lab_name"
+                  id="lab_name"
                   value={lab_name}
                   fullWidth
                   onChange={onChange}

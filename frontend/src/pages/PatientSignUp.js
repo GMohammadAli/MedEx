@@ -18,7 +18,13 @@ function PatientSignUp() {
   const contractContext = useContext(ContractContext);
   const authContext = useContext(AuthContext);
 
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({
+    _patientname: "",
+    _pid: contractContext.account,
+    _age: "",
+    _gender: "",
+    _contact: "",
+  });
   const { _patientname, _age, _gender, _contact } = formData;
 
   const onChange = (e) => {
@@ -128,14 +134,6 @@ function PatientSignUp() {
                   onChange={onChange}
                   id="_contact"
                   value={_contact}
-                  fullWidth
-                  required
-                  sx={{ m: 1 }}
-                />
-                <TextField
-                  label="Password"
-                  variant="outlined"
-                  color="secondary"
                   fullWidth
                   required
                   sx={{ m: 1 }}

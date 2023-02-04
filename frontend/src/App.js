@@ -41,8 +41,8 @@ function App() {
             <Box sx={{ backgroundColor: "#FFF4CF" }}>
               <Routes>
                 <Route exact path="/" element={<Home />} />
-                <Route path="/signUp/Doctor" element={<DoctorSignUp />} />
-                <Route path="/signUp/Patient" element={<PatientSignUp />} />
+                <Route path="/signUp/doctor" element={<DoctorSignUp />} />
+                <Route path="/signUp/patient" element={<PatientSignUp />} />
                 <Route
                   path="/signUp/Diagnostic Center"
                   element={<DiagnosticCenterSignUp />}

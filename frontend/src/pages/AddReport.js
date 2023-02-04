@@ -10,28 +10,29 @@ function AddReport() {
    const authContext = useContext(AuthContext);
 
    const [formData, setFormData] = useState({
-     patient_id: "",
-     _patientname: "",
-     Blood_group: "",
-     dateOfBirth: "",
+     Patient_id: 0x8626f6940e2eb28930efb4cef49b2d1f2c9c1199,
+     Patient_Name: "",
+     Blood_Group: "",
+     DateOfBirth: "",
      gender: "",
-     Hospital_name: "",
-     report_type: "",
+     Hos_name: "",
+     Doc_name: "",
      age: "",
-     symptoms: "",
-     allergies: "",
+     //  Symptoms: "",
+     //  Allergies: "",
      diabetes: "",
    });
    const {
-     _patientname,
-     patient_id,
-     Blood_group,
-     dateOfBirth,
+     Patient_Name,
+     Patient_id,
+     Blood_Group,
+     DateOfBirth,
      gender,
-     Hospital_name,
-     report_type,
-     symptoms,
-     allergies,
+     Hos_name,
+     Doc_name,
+     age,
+    //  Symptoms,
+    //  Allergies,
      diabetes,
    } = formData;
 
@@ -86,8 +87,8 @@ function AddReport() {
                    label="Patient's Name"
                    variant="outlined"
                    color="secondary"
-                   id="_patientname"
-                   value={_patientname}
+                   id="Patient_Name"
+                   value={Patient_Name}
                    fullWidth
                    onChange={onChange}
                    required
@@ -98,8 +99,8 @@ function AddReport() {
                    variant="outlined"
                    inputMode="number"
                    color="secondary"
-                   id="patient_id"
-                   value={patient_id}
+                   id="Patient_id"
+                   value={Patient_id}
                    fullWidth
                    onChange={onChange}
                    required
@@ -109,9 +110,9 @@ function AddReport() {
                    label="Blood Group"
                    variant="outlined"
                    color="secondary"
-                   id="Blood_group"
+                   id="Blood_Group"
                    fullWidth
-                   value={Blood_group}
+                   value={Blood_Group}
                    required
                    onChange={onChange}
                    sx={{ m: 1 }}
@@ -123,8 +124,8 @@ function AddReport() {
                    inputMode="date"
                    fullWidth
                    onChange={onChange}
-                   id="dateOfBirth"
-                   value={dateOfBirth}
+                   id="DateOfBirth"
+                   value={DateOfBirth}
                    required
                    sx={{ m: 1 }}
                  />
@@ -144,8 +145,8 @@ function AddReport() {
                    variant="outlined"
                    color="secondary"
                    onChange={onChange}
-                   id="Hospital_name"
-                   value={Hospital_name}
+                   id="Hos_name"
+                   value={Hos_name}
                    fullWidth
                    required
                    sx={{ m: 1 }}
@@ -155,8 +156,20 @@ function AddReport() {
                    variant="outlined"
                    color="secondary"
                    onChange={onChange}
-                   id="report_type"
-                   value={report_type}
+                   id="Doc_name"
+                   value={Doc_name}
+                   fullWidth
+                   required
+                   sx={{ m: 1 }}
+                 />
+                 <TextField
+                   label="Age"
+                   type='number'
+                   variant="outlined"
+                   color="secondary"
+                   onChange={onChange}
+                   id="age"
+                   value={age}
                    fullWidth
                    required
                    sx={{ m: 1 }}
@@ -172,13 +185,13 @@ function AddReport() {
                    required
                    sx={{ m: 1 }}
                  />
-                 <TextField
+                 {/* <TextField
                    label="Does the Patient has Symptoms?"
                    variant="outlined"
                    color="secondary"
                    onChange={onChange}
-                   id="symptoms"
-                   value={symptoms}
+                   id="Symptoms"
+                   value={Symptoms}
                    fullWidth
                    required
                    sx={{ m: 1 }}
@@ -188,12 +201,12 @@ function AddReport() {
                    variant="outlined"
                    color="secondary"
                    onChange={onChange}
-                   id="allergies"
-                   value={allergies}
+                   id="Allergies"
+                   value={Allergies}
                    fullWidth
                    required
                    sx={{ m: 1 }}
-                 />
+                 /> */}
                  <Button
                    type="submit"
                    style={{ backgroundColor: "#277BC0" }}

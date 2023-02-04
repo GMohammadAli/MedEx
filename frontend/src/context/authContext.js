@@ -62,15 +62,16 @@ function AuthProvider({ children }) {
 
   const patientRegistration = async (contract, formData) => {
     try{
+      console.log("authContext")
      const signer = await contract.provider.getSigner();
      const transaction = await contract
        .connect(signer)
        .patientRegistration(
-         "Ali",
-         "0x5FbDB2315678afecb367f032d93F642f64",
-         "21",
-         "M",
-         "12356643"
+         formData._patientname,
+         formData._pid,
+         formData._age,
+         formData._gender,
+         formData._contact
        );
     await transaction.wait();
 
@@ -81,22 +82,22 @@ function AuthProvider({ children }) {
   }
 
     const addReport = async (contract, formData) => {
+      console.log(formData)
       try {
         const signer = await contract.provider.getSigner();
-        const transaction = await contract
-          .connect(signer)
-          .addReport(
-            "0x8626f6940E2eb28930eFb4CeF49B2d1F2C9C1199",
-            formData._patientname,
-            formData.Blood_group,
-            formData.dateOfBirth,
-            formData.gender,
-            formData.Hospital_name,
-            formData.report_type,
-            // formData.symptoms,
-            // formData.allergies,
-            formData.diabetes
-          );
+        const transaction = await contract.connect(signer).addReport(
+          formData.Patient_id,
+          formData.Patient_Name,
+          formData.Blood_Group,
+          formData.DateOfBirth,
+          formData.gender,
+          formData.Hos_name,
+          formData.Doc_name,
+          formData.age,
+          // formData.Symptoms,
+          // formData.Allergies,
+          formData.diabetes
+        );
         await transaction.wait();
         toast.success("The Report hash been sent to the Patient");
       } catch (err) {
