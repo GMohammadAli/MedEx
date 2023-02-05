@@ -42,10 +42,10 @@ function Navbar() {
             Home
           </Button>
           <Button
-            onClick={() => navigate("/dashboard/verify")}
+            onClick={() => navigate("/dashboard/upload")}
             color="inherit"
             style={{ color: "#277BC0" }}
-            disabled
+            // disabled
             fontWeight={500}
           >
             Dashboard

@@ -19,6 +19,8 @@ import Profile from "./pages/ProfileSelection";
 import ContractProvider from "./context/contractContext";
 import AuthProvider from "./context/authContext";
 import AddReport from "./pages/AddReport";
+import UploadReport from "./components/UploadReport";
+import ViewReport from "./components/ViewReport";
 
 const theme = createTheme({
   // backgroundColor:"#FFB200",
@@ -57,6 +59,8 @@ function App() {
                 <Route path="dashboard" element={<Dashboard />}>
                   <Route path="" element={<Main />} />
                   <Route path="verify" element={<AddUser />} />
+                  <Route path="upload" element={<UploadReport />} />
+                  <Route path="view" element={<ViewReport />} />
                 </Route>
               </Routes>
             </Box>

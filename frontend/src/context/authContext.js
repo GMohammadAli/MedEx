@@ -7,10 +7,12 @@ const AuthContext = createContext();
 
 function AuthProvider({ children }) {
   // const [user, setUser] = useLocalStorage("user", {});
+  const [reportUrl, setReportUrl] = useState("https://bafybeici6hjxanzyqtimbibe4zff3iiqcclzwzbgg5y7h3v4kfwq5hne4q.ipfs.dweb.link/")
   const [user, setUser] = useState({
     username:"",
     emailAddress: "",
-    profileStatus: ""
+    profileStatus: "",
+    url:""
   })
   const [users, setUsers] = useState([]);
   const [token, setToken] = useLocalStorage("token", "");
@@ -40,8 +42,9 @@ function AuthProvider({ children }) {
         formData.Hospital_id
       );
     await transaction.wait();
-    toast.success("Registration is Done for Doctor"); 
+    toast.success("Registration for Doctor is Done"); 
     } catch (err) {
+        console.log(err);
         toast.error(err)
       }
   }
@@ -54,8 +57,11 @@ function AuthProvider({ children }) {
       .diagnosticCenterRegistration("Maa Chuda","Desh Lootene Wala","Maa Chuda"
       );
     await transaction.wait();
-    toast.success("Registration is Done for Diagnostic Center");
+    toast.success(
+      "Registration for Diagnostic Center is Done"
+    );
     } catch (err) {
+      console.log(err);
       toast.error(err)
     }
   }
@@ -75,14 +81,14 @@ function AuthProvider({ children }) {
        );
     await transaction.wait();
 
-    toast.success("Registration is Done for Patient");
+    toast.success("Registration for Patient is Done");
     } catch (err) {
+        console.log(err);
         toast.error(err)
       }
   }
 
     const addReport = async (contract, formData) => {
-      console.log(formData)
       try {
         const signer = await contract.provider.getSigner();
         const transaction = await contract.connect(signer).addReport(
@@ -96,10 +102,10 @@ function AuthProvider({ children }) {
           formData.age,
           // formData.Symptoms,
           // formData.Allergies,
-          formData.diabetes
+          formData.diabetes,
         );
         await transaction.wait();
-        toast.success("The Report hash been sent to the Patient");
+        toast.success("The Report has been generated and sent to the Patient");
       } catch (err) {
         toast.error(err)
       }
@@ -160,6 +166,8 @@ function AuthProvider({ children }) {
         diagnosticCenterRegistration: diagnosticCenterRegistration,
         patientRegistration: patientRegistration,
         addReport: addReport,
+        reportUrl : reportUrl,
+        setReportUrl:setReportUrl,
         // getUsers: getUsers,
         // registerUser: registerUser,
         // loginUser: loginUser,

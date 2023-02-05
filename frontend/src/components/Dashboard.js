@@ -105,7 +105,7 @@ function DashboardContent() {
               sx={{ flexGrow: 1 }}
               style={{ color: "#277BC0" }}
             >
-              Doctor's Dashboard
+              Diagnostic Center's Dashboard
             </Typography>
             <IconButton color="inherit">
               <Badge badgeContent={4} style={{ color: "#277BC0" }}>

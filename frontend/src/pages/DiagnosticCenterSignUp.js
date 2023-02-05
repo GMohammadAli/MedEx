@@ -13,11 +13,13 @@ import React, { useContext, useState } from "react";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 import { ContractContext } from "../context/contractContext";
 import { AuthContext } from "../context/authContext";
+import { useNavigate } from "react-router-dom";
 
 
 function DiagnosticCenterSignUp() {
   const contractContext = useContext(ContractContext);
   const authContext = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     lab_name: "",
@@ -37,6 +39,7 @@ function DiagnosticCenterSignUp() {
     e.preventDefault();
     const contract = contractContext.medEx;
     await authContext.diagnosticCenterRegistration(contract, formData);
+    navigate("/diagnosticCenter/:id/addReport");
   };
 
   return (

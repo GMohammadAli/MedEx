@@ -56,7 +56,7 @@ function ProfileSelection() {
             variant="outlined"
             color="secondary"
             fullWidth
-            id='username'
+            id="username"
             required
             value={username}
             onChange={onChange}
@@ -66,7 +66,7 @@ function ProfileSelection() {
             label="Email Address"
             variant="outlined"
             color="secondary"
-            id ='emailAddress'
+            id="emailAddress"
             fullWidth
             required
             value={emailAddress}
@@ -85,17 +85,17 @@ function ProfileSelection() {
             <Grid item md={4} style={{ display: "flex", padding: "3rem" }}>
               <Card
                 profileTitle="Doctor"
-                imgSrc="/Doctor.png"
+                imgSrc="Images/Doctor.png"
                 formData={formData}
               />
             </Grid>
             <Grid item md={4} style={{ display: "flex", padding: "3rem" }}>
-              <Card profileTitle="Patient" imgSrc="/Patient.png" />
+              <Card profileTitle="Patient" imgSrc="Images/Patient.png" />
             </Grid>
             <Grid item md={4} style={{ display: "flex", padding: "3rem" }}>
               <Card
                 profileTitle="Diagnostic Center"
-                imgSrc="/Diagnostic_Center.png"
+                imgSrc="Images/Diagnostic_Center.png"
               />
             </Grid>
           </Grid>

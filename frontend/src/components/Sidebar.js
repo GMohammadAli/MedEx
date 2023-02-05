@@ -5,13 +5,14 @@ import ListItemText from "@mui/material/ListItemText";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import GroupAddIcon from "@mui/icons-material/GroupAdd";
 import LogoutIcon from "@mui/icons-material/Logout";
+import DriveFolderUploadIcon from "@mui/icons-material/DriveFolderUpload";
 import { Link } from "react-router-dom";
 
 export const Sidebar = (
   <React.Fragment>
     <Link
       style={{ textDecoration: "none", color: "#000", fontSize: "1rem" }}
-      to="/dashboard"
+      to="/"
     >
       <ListItemButton>
         <ListItemIcon>
@@ -29,6 +30,28 @@ export const Sidebar = (
           <GroupAddIcon />
         </ListItemIcon>
         <ListItemText primary="Verification" />
+      </ListItemButton>
+    </Link>
+    <Link
+      style={{ textDecoration: "none", color: "#000", fontSize: "1rem" }}
+      to="upload"
+    >
+      <ListItemButton>
+        <ListItemIcon>
+          <DriveFolderUploadIcon />
+        </ListItemIcon>
+        <ListItemText primary="Upload Reports" />
+      </ListItemButton>
+    </Link>
+    <Link
+      style={{ textDecoration: "none", color: "#000", fontSize: "1rem" }}
+      to="view"
+    >
+      <ListItemButton>
+        <ListItemIcon>
+          <DriveFolderUploadIcon />
+        </ListItemIcon>
+        <ListItemText primary="View Reports" />
       </ListItemButton>
     </Link>
     <ListItemButton>

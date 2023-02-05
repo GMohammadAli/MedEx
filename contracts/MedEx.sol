@@ -72,6 +72,7 @@ contract medEx {
         uint Hospital_id
     ) public {
         require(doctor_id != p_id, "Doctor cannot be patient");
+        require(Hospital_id <= 255 && Hospital_id > 0, "enter correct data");
         Doctor memory docs;
         docs.DocName = Doctor_name;
         docs.DocId = doctor_id;
@@ -100,6 +101,7 @@ contract medEx {
     ) public payable onlyLabwala {
         require(Patient_id != msg.sender, "Patient cannot be the Labwala");
         require(Patient_id != doctor, "Doctor cannot be the patient");
+        require(age <= 150 && age > 0, "enter correct data");
         p_id = Patient_id;
         Report memory repos;
         repos.PatientName = Patient_Name;
