@@ -10,7 +10,7 @@ function AddReport() {
    const authContext = useContext(AuthContext);
 
    const [formData, setFormData] = useState({
-     Patient_id: 0x8626f6940e2eb28930efb4cef49b2d1f2c9c1199,
+     Patient_id: "",
      Patient_Name: "",
      Blood_Group: "",
      DateOfBirth: "",
@@ -97,7 +97,6 @@ function AddReport() {
                  <TextField
                    label="Patient's Id"
                    variant="outlined"
-                   inputMode="number"
                    color="secondary"
                    id="Patient_id"
                    value={Patient_id}

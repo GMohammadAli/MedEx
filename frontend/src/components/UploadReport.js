@@ -4,9 +4,12 @@ import { Web3Storage } from "web3.storage";
 import {  Box, Button, Container, FormControl, Grid, InputLabel, MenuItem, Paper, Select, Typography} from '@mui/material';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../context/authContext';
+import { useNavigate } from 'react-router-dom';
 
 function UploadReport() {
   const authContext = useContext(AuthContext)
+  
+   const navigate = useNavigate();
 
   const ReportType = {
     Blood: "blood",
@@ -27,10 +30,11 @@ function UploadReport() {
     console.log(file);
     const cid = await storage.put(file);
     const url = `https://${cid}.ipfs.dweb.link/`;
-    await authContext.setReportUrls(url)
+    await authContext.setReportUrl(url)
     console.log(`Uploading ${file.length} files`);
     console.log("Content added with CID:", url);
-    toast.success(`Successfully Uploaded file on IPFS: ${url}`)
+    toast.success(`Successfully Uploaded file on IPFS`)
+    navigate("/dashboard/view");
   }
   
        

@@ -72,7 +72,7 @@ function DashboardContent() {
 
   return (
     <ThemeProvider theme={mdTheme}>
-      <Box sx={{ display: "flex" }} height="100vh">
+      <Box sx={{ display: "flex" }} height="140vh">
         <CssBaseline />
         <AppBar
           position="absolute"
@@ -104,8 +104,7 @@ function DashboardContent() {
               noWrap
               sx={{ flexGrow: 1 }}
               style={{ color: "#277BC0" }}
-            >
-              Diagnostic Center's Dashboard
+            >Dashboard
             </Typography>
             <IconButton color="inherit">
               <Badge badgeContent={4} style={{ color: "#277BC0" }}>

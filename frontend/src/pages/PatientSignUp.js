@@ -13,10 +13,12 @@ import React, { useContext, useState } from "react";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 import { ContractContext } from "../context/contractContext";
 import { AuthContext } from "../context/authContext";
+import { useNavigate } from "react-router-dom";
 
 function PatientSignUp() {
   const contractContext = useContext(ContractContext);
   const authContext = useContext(AuthContext);
+  const navigate = useNavigate()
 
   const [formData, setFormData] = useState({
     _patientname: "",
@@ -38,6 +40,7 @@ function PatientSignUp() {
     e.preventDefault();
     const contract = contractContext.medEx;
     await authContext.patientRegistration(contract, formData);
+    navigate("/dashboard/getProfiles");
   };
 
   return (
@@ -51,7 +54,7 @@ function PatientSignUp() {
       >
         <Box
           style={{
-            padding: "5rem",
+            padding: "6rem",
             margin: "1rem",
           }}
           maxWidth="md"
@@ -151,7 +154,7 @@ function PatientSignUp() {
                 >
                   REGISTER
                 </Button>
-                <FormGroup>
+                {/* <FormGroup>
                   <FormControlLabel
                     control={<Checkbox color="secondary" />}
                     label="Show Password"
@@ -163,7 +166,7 @@ function PatientSignUp() {
                   <Grid item xs={8}>
                     <a href="/SignIn">Already have an account? Sign In</a>
                   </Grid>
-                </Grid>
+                </Grid> */}
               </Box>
             </Box>
           </Container>

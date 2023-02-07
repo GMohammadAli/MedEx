@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ForgotPassword from "./pages/ForgotPassword";
 import Home from "./pages/Home";
@@ -16,11 +16,12 @@ import Main from "./pages/Dashboard";
 import AddUser from "./pages/AddUser";
 import Dashboard from "./components/Dashboard";
 import Profile from "./pages/ProfileSelection";
-import ContractProvider from "./context/contractContext";
+import ContractProvider, { ContractContext } from "./context/contractContext";
 import AuthProvider from "./context/authContext";
 import AddReport from "./pages/AddReport";
 import UploadReport from "./components/UploadReport";
 import ViewReport from "./components/ViewReport";
+import ViewRegisteredProfiles from "./components/ViewRegisteredProfiles";
 
 const theme = createTheme({
   // backgroundColor:"#FFB200",
@@ -32,7 +33,12 @@ const theme = createTheme({
 });
 
 function App() {
+  // eslint-disable-next-line 
+  const contractContext = useContext(ContractContext);
 
+  // useEffect(() => {
+  //   contractContext.loadBlockchainData();
+  // }, [contractContext])
   
   return (
     <ThemeProvider theme={theme}>
@@ -61,6 +67,7 @@ function App() {
                   <Route path="verify" element={<AddUser />} />
                   <Route path="upload" element={<UploadReport />} />
                   <Route path="view" element={<ViewReport />} />
+                  <Route path="getProfiles" element={<ViewRegisteredProfiles />} />
                 </Route>
               </Routes>
             </Box>

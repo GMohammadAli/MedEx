@@ -39,12 +39,11 @@ function ContractProvider({ children }) {
       });
     };
 
-  useEffect(() => {
-    loadBlockchainData();
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
-  );
+    useEffect(() => {
+     loadBlockchainData();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
   ///----------------------------------
   
   return (
@@ -52,7 +51,8 @@ function ContractProvider({ children }) {
       value={{
         medEx: medEx,
         account: account,
-        provider: provider
+        provider: provider,
+        loadBlockchainData:loadBlockchainData
       }}
     >
       {children}

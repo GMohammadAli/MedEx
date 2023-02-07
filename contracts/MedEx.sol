@@ -47,6 +47,8 @@ contract medEx {
         string reco_doc_name;
     }
 
+
+
     modifier onlyLabwala() {
         require(
             lab == msg.sender,
@@ -62,6 +64,9 @@ contract medEx {
     }
 
     address doctor;
+
+    //Doctor array 
+    Doctor[] public doc_data;
 
     //Adding the doctor
     function doctorRegistration(
@@ -80,10 +85,28 @@ contract medEx {
         docs.Hos_Name = Hospital_Name;
         docs.Hos_id = Hospital_id;
 
+
+        //push in array
+        doc_data.push(docs);
+
         doctors[doctor_id] = docs;
 
         doctor = doctor_id;
+
+
     }
+
+     
+
+    //Doctor function to retrieve data
+    function getDoctor() public view returns(Doctor[] memory){
+        return doc_data;
+
+    }
+
+    
+
+    Report[] public rep_data;
 
     //Adding the report
     function addReport(
@@ -104,8 +127,8 @@ contract medEx {
         require(age <= 150 && age > 0, "enter correct data");
         p_id = Patient_id;
         Report memory repos;
-        repos.PatientName = Patient_Name;
         repos.patientid = Patient_id;
+        repos.PatientName = Patient_Name;
         repos.Bloodgrp = Blood_Group;
         repos.DOB = DateOfBirth;
         repos.gender = gender;
@@ -117,11 +140,21 @@ contract medEx {
         //repos.Symptoms = Symptoms;
         //repos.Allergies = Allergies;
 
+        rep_data.push(repos);
+
         records[Patient_id] = repos;
 
         rc++;
     }
 
+    function getReport() public view returns(Report[] memory){
+        return rep_data;
+    }
+
+
+
+    //DC array
+    DiagnosticCenter[] public dc_data;
     //Registering Diagnostic Centre
     function diagnosticCenterRegistration(
         string memory _labname,
@@ -135,8 +168,18 @@ contract medEx {
         dc.reco_hospitalname = _reco_hospitalname;
         dc.reco_doc_name = _reco_docname;
 
+        dc_data.push(dc);
+
         dcentres[dc.lab_id] = dc;
     }
+
+    //DC function to retrieve data
+    function getDC() public view returns(DiagnosticCenter[] memory){
+        return dc_data;
+    }
+
+    //Patient array
+    Patient[] public patient_data;
 
     function patientRegistration(
         string memory _patientname,
@@ -155,6 +198,13 @@ contract medEx {
         p.gender = _gender;
         p.contact = _contact;
 
+        patient_data.push(p);
+
         patients[_pid] = p;
+    }
+
+    //Patient function to retrieve data
+    function getPatient() public view returns(Patient[] memory){
+        return patient_data;
     }
 }

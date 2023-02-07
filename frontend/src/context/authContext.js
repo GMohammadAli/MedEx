@@ -15,6 +15,9 @@ function AuthProvider({ children }) {
     url:""
   })
   const [users, setUsers] = useState([]);
+  const [patients, setPatients] = useState([]);
+  const [doctors, setDoctors] = useState([]);
+  const [diagnosticCenters, setDiagnosticCenters] = useState([]);
   const [token, setToken] = useLocalStorage("token", "");
   const headers = {
     Authorization: token,
@@ -28,6 +31,43 @@ function AuthProvider({ children }) {
       return false;
     }
   });
+
+  const getPatients = async (contract) => {
+      try {
+        const signer = await contract.provider.getSigner();
+        const patients = await contract
+          .connect(signer)
+          .getPatient();
+        console.log(patients)
+        setPatients(patients)
+        console.log("Patients fetched Successfully");
+      } catch (err) {
+        console.log(err);
+      }
+  }
+
+  const getDoctors = async (contract) => {
+    try {
+      const signer = await contract.provider.getSigner();
+      const doctors = await contract.connect(signer).getDoctor();
+      console.log(doctors);
+      setDoctors(doctors);
+      console.log("Doctors fetched Successfully");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const getDiagnosticCenters = async (contract) => {
+    try {
+      const signer = await contract.provider.getSigner();
+      const diagnosticCenters = await contract.connect(signer).getDC();
+      console.log(diagnosticCenters);
+      setDiagnosticCenters(diagnosticCenters);
+      console.log("Diagnostic Centers fetched Successfully");
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const doctorRegistration = async (contract, formData) => {
     try{
@@ -44,9 +84,9 @@ function AuthProvider({ children }) {
     await transaction.wait();
     toast.success("Registration for Doctor is Done"); 
     } catch (err) {
-        console.log(err);
-        toast.error(err)
-      }
+      console.log(err);
+      toast.error(err.message)
+    }
   }
 
   const diagnosticCenterRegistration = async (contract, formData) => {
@@ -54,7 +94,10 @@ function AuthProvider({ children }) {
     const signer = await contract.provider.getSigner();
     const transaction = await contract
       .connect(signer)
-      .diagnosticCenterRegistration("Maa Chuda","Desh Lootene Wala","Maa Chuda"
+      .diagnosticCenterRegistration(
+        formData.lab_name,
+        formData._reco_hospitalname,
+        formData._reco_docname
       );
     await transaction.wait();
     toast.success(
@@ -62,7 +105,7 @@ function AuthProvider({ children }) {
     );
     } catch (err) {
       console.log(err);
-      toast.error(err)
+      toast.error(err.message);
     }
   }
 
@@ -84,7 +127,7 @@ function AuthProvider({ children }) {
     toast.success("Registration for Patient is Done");
     } catch (err) {
         console.log(err);
-        toast.error(err)
+        toast.error(err.message);
       }
   }
 
@@ -107,7 +150,8 @@ function AuthProvider({ children }) {
         await transaction.wait();
         toast.success("The Report has been generated and sent to the Patient");
       } catch (err) {
-        toast.error(err)
+        console.log(err);
+        toast.error(err.message);
       }
     };
 
@@ -162,12 +206,18 @@ function AuthProvider({ children }) {
         user: user,
         users: users,
         token: token,
+        patients: patients,
+        doctors: doctors,
+        diagnosticCenters:diagnosticCenters,
+        getDiagnosticCenters: getDiagnosticCenters,
+        getDoctors: getDoctors,
+        getPatients: getPatients,
         doctorRegistration: doctorRegistration,
         diagnosticCenterRegistration: diagnosticCenterRegistration,
         patientRegistration: patientRegistration,
         addReport: addReport,
-        reportUrl : reportUrl,
-        setReportUrl:setReportUrl,
+        reportUrl: reportUrl,
+        setReportUrl: setReportUrl,
         // getUsers: getUsers,
         // registerUser: registerUser,
         // loginUser: loginUser,

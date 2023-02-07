@@ -39,7 +39,7 @@ function DiagnosticCenterSignUp() {
     e.preventDefault();
     const contract = contractContext.medEx;
     await authContext.diagnosticCenterRegistration(contract, formData);
-    navigate("/diagnosticCenter/:id/addReport");
+    navigate("/dashboard/getProfiles");
   };
 
   return (
@@ -53,7 +53,7 @@ function DiagnosticCenterSignUp() {
       >
         <Box
           style={{
-            padding: "6rem",
+            padding: "8rem",
             margin: "1rem",
           }}
           maxWidth="md"
@@ -141,7 +141,7 @@ function DiagnosticCenterSignUp() {
                 >
                   REGISTER
                 </Button>
-                <FormGroup>
+                {/* <FormGroup>
                   <FormControlLabel
                     control={<Checkbox color="secondary" />}
                     label="Show Password"
@@ -153,7 +153,7 @@ function DiagnosticCenterSignUp() {
                   <Grid item xs={8}>
                     <a href="/SignIn">Already have an account? Sign In</a>
                   </Grid>
-                </Grid>
+                </Grid> */}
               </Box>
             </Box>
           </Container>

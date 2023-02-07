@@ -6,6 +6,7 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import GroupAddIcon from "@mui/icons-material/GroupAdd";
 import LogoutIcon from "@mui/icons-material/Logout";
 import DriveFolderUploadIcon from "@mui/icons-material/DriveFolderUpload";
+import SourceIcon from "@mui/icons-material/Source";
 import { Link } from "react-router-dom";
 
 export const Sidebar = (
@@ -34,13 +35,13 @@ export const Sidebar = (
     </Link>
     <Link
       style={{ textDecoration: "none", color: "#000", fontSize: "1rem" }}
-      to="upload"
+      to="getProfiles"
     >
       <ListItemButton>
         <ListItemIcon>
-          <DriveFolderUploadIcon />
+          <GroupAddIcon />
         </ListItemIcon>
-        <ListItemText primary="Upload Reports" />
+        <ListItemText primary="List Of Profiles" />
       </ListItemButton>
     </Link>
     <Link
@@ -49,9 +50,20 @@ export const Sidebar = (
     >
       <ListItemButton>
         <ListItemIcon>
-          <DriveFolderUploadIcon />
+          <SourceIcon />
         </ListItemIcon>
         <ListItemText primary="View Reports" />
+      </ListItemButton>
+    </Link>
+    <Link
+      style={{ textDecoration: "none", color: "#000", fontSize: "1rem" }}
+      to="upload"
+    >
+      <ListItemButton>
+        <ListItemIcon>
+          <DriveFolderUploadIcon />
+        </ListItemIcon>
+        <ListItemText primary="Upload Reports" />
       </ListItemButton>
     </Link>
     <ListItemButton>
