@@ -15,10 +15,11 @@ function UploadReport() {
     Blood: "blood",
     Urine: "urine",
     Angiography: "angiography",
+    XRay:"x-ray"
   };
 
   const storage = new Web3Storage({ token: process.env.REACT_APP_IPFS_TOKEN });
-  const [reportType, setreportType] = useState(ReportType.Blood);
+  const [reportType, setreportType] = useState(ReportType.XRay);
 
   const handleChange = (e) => {
     setreportType(e.target.value);
@@ -58,9 +59,7 @@ function UploadReport() {
                   onChange={(e) => handleChange(e)}
                   label="Report_Type"
                 >
-                  <MenuItem value={ReportType.Blood}>
-                    <em>{reportType}</em>
-                  </MenuItem>
+                  <MenuItem value={reportType}>X-Ray Report</MenuItem>
                   <MenuItem value={ReportType.Blood}>
                     Blood Test Report
                   </MenuItem>
@@ -71,20 +70,9 @@ function UploadReport() {
                     Angiography Report
                   </MenuItem>
                 </Select>
-                <Box component="div" sx={{ margin: "1rem" }}>
-                  <input multiple type="file" onChange={(e) => onChange(e)} />
-                </Box>
-                <Button
-                  type="submit"
-                  style={{ backgroundColor: "#277BC0" }}
-                  size="lg"
-                  variant="contained"
-                  fullWidth
-                  disableElevation
-                  // disabled
-                  sx={{ m: 1 }}
-                >
-                  Upload Report
+                <Button type='submit' variant="contained" component="label"sx={{margin:"1rem"}}>
+                  Upload
+                  <input hidden accept="image/*" multiple type="file" onChange={(e) => onChange(e)}/>
                 </Button>
               </FormControl>
             </Paper>

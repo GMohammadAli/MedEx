@@ -41,7 +41,7 @@ function Home() {
             </Typography>
             <Button
               type="submit"
-              style={{ marginTop: "10px", backgroundColor: "#277BC0" }}
+              style={{ margin: "1rem", backgroundColor: "#277BC0" , padding:"1rem"}}
               color="secondary"
               href="/profile"
               variant="contained"

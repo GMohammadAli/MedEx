@@ -20,9 +20,10 @@ function ViewPatients() {
         console.log(authContext.patients);
         await authContext.getDoctors(contract);
         await authContext.getDiagnosticCenters(contract);
-      }
-        
-      loadProfileData()
+      };
+
+      loadProfileData();
+      // eslint-disable-next-line
     }, [])
 
   return (

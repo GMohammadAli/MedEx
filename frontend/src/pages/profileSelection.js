@@ -25,15 +25,15 @@ function ProfileSelection() {
       }}
     >
       <Box
-      // style={{
-      //   width: "100vw",
-      //   height: "91vh",
-      //   spacing: 0,
-      //   justify: "space-around",
-      //   display: "flex",
-      //   justifyContent: "center",
-      //   alignItems: "center",
-      // }}
+      style={{
+        width: "100vw",
+        height: "91vh",
+        spacing: 0,
+        justify: "space-around",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
       >
         <Box
           style={{
@@ -51,7 +51,7 @@ function ProfileSelection() {
           >
             Login Page
           </Typography>
-          <TextField
+          {/* <TextField
             label="Username"
             variant="outlined"
             color="secondary"
@@ -72,7 +72,7 @@ function ProfileSelection() {
             value={emailAddress}
             onChange={onChange}
             sx={{ m: 1 }}
-          />
+          /> */}
           <Typography
             variant="h5"
             component="h5"
