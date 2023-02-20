@@ -17,6 +17,7 @@ function AuthProvider({ children }) {
   const [users, setUsers] = useState([]);
   const [patients, setPatients] = useState([]);
   const [doctors, setDoctors] = useState([]);
+  const [reports, setReports] = useState([]);
   const [diagnosticCenters, setDiagnosticCenters] = useState([]);
   const [token, setToken] = useLocalStorage("token", "");
   const headers = {
@@ -53,6 +54,18 @@ function AuthProvider({ children }) {
       console.log(doctors);
       setDoctors(doctors);
       console.log("Doctors fetched Successfully");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const getReport = async (contract) => {
+    try {
+      const signer = await contract.provider.getSigner();
+      const reports = await contract.connect(signer).getReport();
+      console.log(reports);
+      setReports(reports);
+      console.log("Reports fetched Successfully");
     } catch (err) {
       console.log(err);
     }
@@ -208,6 +221,7 @@ function AuthProvider({ children }) {
         token: token,
         patients: patients,
         doctors: doctors,
+        reports:reports,
         diagnosticCenters:diagnosticCenters,
         getDiagnosticCenters: getDiagnosticCenters,
         getDoctors: getDoctors,
@@ -216,6 +230,7 @@ function AuthProvider({ children }) {
         diagnosticCenterRegistration: diagnosticCenterRegistration,
         patientRegistration: patientRegistration,
         addReport: addReport,
+        getReport:getReport,
         reportUrl: reportUrl,
         setReportUrl: setReportUrl,
         // getUsers: getUsers,

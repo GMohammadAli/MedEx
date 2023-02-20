@@ -58,6 +58,17 @@ export const Sidebar = (
     </Link>
     <Link
       style={{ textDecoration: "none", color: "#000", fontSize: "1rem" }}
+      to="/diagnosticCenter/:id/addReport"
+    >
+      <ListItemButton>
+        <ListItemIcon>
+          <DriveFolderUploadIcon />
+        </ListItemIcon>
+        <ListItemText primary="Add Reports" />
+      </ListItemButton>
+    </Link>
+    <Link
+      style={{ textDecoration: "none", color: "#000", fontSize: "1rem" }}
       to="upload"
     >
       <ListItemButton>
