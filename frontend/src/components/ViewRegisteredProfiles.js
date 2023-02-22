@@ -37,7 +37,7 @@ function ViewPatients() {
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <Box sx={{ p: "1rem" }}>
-            {authContext.patients !== [] && (
+            {authContext.doctors.length !== 0 && (
               <Paper
                 sx={{
                   p: 2,
@@ -86,7 +86,7 @@ function ViewPatients() {
             )}
           </Box>
           <Box sx={{ p: "1rem" }}>
-            {authContext.patients && (
+            {authContext.patients.length !== 0 && (
               <Paper
                 sx={{
                   p: 2,
@@ -114,6 +114,8 @@ function ViewPatients() {
                         <TableCell>Patient Id</TableCell>
                         <TableCell align="right">Patient's Name</TableCell>
                         <TableCell align="right">Gender</TableCell>
+                        <TableCell align="right">Age</TableCell>
+                        <TableCell align="right">Contact Number</TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
@@ -126,6 +128,12 @@ function ViewPatients() {
                             {patient.PatientName}
                           </TableCell>
                           <TableCell align="right">{patient.gender}</TableCell>
+                          <TableCell align="right">
+                            {Number(patient.age)}
+                          </TableCell>
+                          <TableCell align="right">
+                            {Number(patient.contact)}
+                          </TableCell>
                         </TableRow>
                       ))}
                     </TableBody>
@@ -135,7 +143,7 @@ function ViewPatients() {
             )}
           </Box>
           <Box sx={{ p: "1rem" }}>
-            {authContext.diagnosticCenters && (
+            {authContext.diagnosticCenters.length !== 0 && (
               <Paper
                 sx={{
                   p: 2,
@@ -188,7 +196,7 @@ function ViewPatients() {
             )}
           </Box>
           <Box sx={{ p: "1rem" }}>
-            {authContext.reports && (
+            {authContext.reports.length !== 0 && (
               <Paper
                 sx={{
                   p: 2,

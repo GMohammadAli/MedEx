@@ -121,7 +121,7 @@ contract medEx {
         //string[] memory Symptoms,
         //string[] memory Allergies,
         bool diabetes
-    ) public payable {
+    ) public payable onlyLabwala{
         require(Patient_id != msg.sender, "Patient cannot be the Labwala");
         require(Patient_id != doctor, "Doctor cannot be the patient");
         require(age <= 150 && age > 0, "enter correct data");
