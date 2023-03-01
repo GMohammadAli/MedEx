@@ -104,11 +104,13 @@ function AuthProvider({ children }) {
 
   const diagnosticCenterRegistration = async (contract, formData) => {
     try{
+      console.log(contract)
     const signer = await contract.provider.getSigner();
     const transaction = await contract
       .connect(signer)
       .diagnosticCenterRegistration(
         formData.lab_name,
+        formData.lab_id,
         formData._reco_hospitalname,
         formData._reco_docname
       );

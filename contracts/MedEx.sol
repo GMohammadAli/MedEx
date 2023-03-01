@@ -2,8 +2,11 @@
 pragma solidity >=0.5.0 <0.9.0;
 
 contract medEx {
-    address lab = msg.sender;
+    address lab;
     uint rc = 0;
+
+
+    address [] alreadyreg;
 
     mapping(address => Report) public records;
     mapping(address => Patient) public patients;
@@ -48,15 +51,7 @@ contract medEx {
     }
 
 
-
-    modifier onlyLabwala() {
-        require(
-            lab == msg.sender,
-            "Only Diagnostic Centers can call this function"
-        );
-        _;
-    }
-
+    
     address p_id;
 
     function report_count() public view returns (uint) {
@@ -76,6 +71,12 @@ contract medEx {
         string memory Hospital_Name,
         uint Hospital_id
     ) public {
+
+        for(uint i = 0; i < alreadyreg.length; i++)
+        {
+        require(doctor_id != alreadyreg[i], "Already Registered");
+
+        }
         require(doctor_id != p_id, "Doctor cannot be patient");
         require(Hospital_id <= 255 && Hospital_id > 0, "enter correct data");
         Doctor memory docs;
@@ -92,6 +93,12 @@ contract medEx {
         doctors[doctor_id] = docs;
 
         doctor = doctor_id;
+
+        alreadyreg.push(doctor_id);
+
+        
+
+       
 
 
     }
@@ -121,14 +128,16 @@ contract medEx {
         //string[] memory Symptoms,
         //string[] memory Allergies,
         bool diabetes
-    ) public payable onlyLabwala{
+    ) public payable {
+       
+
         require(Patient_id != msg.sender, "Patient cannot be the Labwala");
         require(Patient_id != doctor, "Doctor cannot be the patient");
         require(age <= 150 && age > 0, "enter correct data");
         p_id = Patient_id;
         Report memory repos;
-        repos.patientid = Patient_id;
         repos.PatientName = Patient_Name;
+        repos.patientid = Patient_id;
         repos.Bloodgrp = Blood_Group;
         repos.DOB = DateOfBirth;
         repos.gender = gender;
@@ -158,19 +167,28 @@ contract medEx {
     //Registering Diagnostic Centre
     function diagnosticCenterRegistration(
         string memory _labname,
+        address _lab,
         string memory _reco_hospitalname,
         string memory _reco_docname
     ) public {
+
+        for(uint i = 0; i < alreadyreg.length; i++)
+        {
+        require(_lab != alreadyreg[i], "Already Registered");
+
+        }
         DiagnosticCenter memory dc;
 
         dc.Lab_name = _labname;
-        dc.lab_id = msg.sender;
+        dc.lab_id = _lab;
         dc.reco_hospitalname = _reco_hospitalname;
         dc.reco_doc_name = _reco_docname;
 
         dc_data.push(dc);
 
         dcentres[dc.lab_id] = dc;
+
+        alreadyreg.push(lab);
     }
 
     //DC function to retrieve data
@@ -188,6 +206,12 @@ contract medEx {
         string memory _gender,
         uint _contact
     ) public {
+        for(uint i = 0; i < alreadyreg.length; i++)
+        {
+        require(_pid != alreadyreg[i], "Already Registered");
+
+        }
+
         require(_pid != lab, "Patient cannot be the Labwala");
         require(_pid != doctor, "Doctor cannot be the patient");
 
@@ -201,7 +225,14 @@ contract medEx {
         patient_data.push(p);
 
         patients[_pid] = p;
+
+        alreadyreg.push(_pid);
+
+        
     }
+
+    
+    
 
     //Patient function to retrieve data
     function getPatient() public view returns(Patient[] memory){

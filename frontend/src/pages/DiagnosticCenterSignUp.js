@@ -23,6 +23,7 @@ function DiagnosticCenterSignUp() {
 
   const [formData, setFormData] = useState({
     lab_name: "",
+    lab_id: contractContext.account,
     _reco_hospitalname: "",
     _reco_docname: "",
   });

@@ -1,674 +1,679 @@
- [
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "Patient_id",
-        "type": "address"
-      },
-      {
-        "internalType": "string",
-        "name": "Patient_Name",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "Blood_Group",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "DateOfBirth",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "gender",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "Hos_name",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "Doc_name",
-        "type": "string"
-      },
-      {
-        "internalType": "uint256",
-        "name": "age",
-        "type": "uint256"
-      },
-      {
-        "internalType": "bool",
-        "name": "diabetes",
-        "type": "bool"
-      }
-    ],
-    "name": "addReport",
-    "outputs": [],
-    "stateMutability": "payable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "name": "dc_data",
-    "outputs": [
-      {
-        "internalType": "string",
-        "name": "Lab_name",
-        "type": "string"
-      },
-      {
-        "internalType": "address",
-        "name": "lab_id",
-        "type": "address"
-      },
-      {
-        "internalType": "string",
-        "name": "reco_hospitalname",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "reco_doc_name",
-        "type": "string"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "name": "dcentres",
-    "outputs": [
-      {
-        "internalType": "string",
-        "name": "Lab_name",
-        "type": "string"
-      },
-      {
-        "internalType": "address",
-        "name": "lab_id",
-        "type": "address"
-      },
-      {
-        "internalType": "string",
-        "name": "reco_hospitalname",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "reco_doc_name",
-        "type": "string"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "string",
-        "name": "_labname",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "_reco_hospitalname",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "_reco_docname",
-        "type": "string"
-      }
-    ],
-    "name": "diagnosticCenterRegistration",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "name": "doc_data",
-    "outputs": [
-      {
-        "internalType": "string",
-        "name": "DocName",
-        "type": "string"
-      },
-      {
-        "internalType": "address",
-        "name": "DocId",
-        "type": "address"
-      },
-      {
-        "internalType": "string",
-        "name": "Doc_spec",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "Hos_Name",
-        "type": "string"
-      },
-      {
-        "internalType": "uint256",
-        "name": "Hos_id",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "string",
-        "name": "Doctor_name",
-        "type": "string"
-      },
-      {
-        "internalType": "address",
-        "name": "doctor_id",
-        "type": "address"
-      },
-      {
-        "internalType": "string",
-        "name": "doc_specializaton",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "Hospital_Name",
-        "type": "string"
-      },
-      {
-        "internalType": "uint256",
-        "name": "Hospital_id",
-        "type": "uint256"
-      }
-    ],
-    "name": "doctorRegistration",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "name": "doctors",
-    "outputs": [
-      {
-        "internalType": "string",
-        "name": "DocName",
-        "type": "string"
-      },
-      {
-        "internalType": "address",
-        "name": "DocId",
-        "type": "address"
-      },
-      {
-        "internalType": "string",
-        "name": "Doc_spec",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "Hos_Name",
-        "type": "string"
-      },
-      {
-        "internalType": "uint256",
-        "name": "Hos_id",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "getDC",
-    "outputs": [
-      {
-        "components": [
-          {
-            "internalType": "string",
-            "name": "Lab_name",
-            "type": "string"
-          },
-          {
-            "internalType": "address",
-            "name": "lab_id",
-            "type": "address"
-          },
-          {
-            "internalType": "string",
-            "name": "reco_hospitalname",
-            "type": "string"
-          },
-          {
-            "internalType": "string",
-            "name": "reco_doc_name",
-            "type": "string"
-          }
-        ],
-        "internalType": "struct medEx.DiagnosticCenter[]",
-        "name": "",
-        "type": "tuple[]"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "getDoctor",
-    "outputs": [
-      {
-        "components": [
-          {
-            "internalType": "string",
-            "name": "DocName",
-            "type": "string"
-          },
-          {
-            "internalType": "address",
-            "name": "DocId",
-            "type": "address"
-          },
-          {
-            "internalType": "string",
-            "name": "Doc_spec",
-            "type": "string"
-          },
-          {
-            "internalType": "string",
-            "name": "Hos_Name",
-            "type": "string"
-          },
-          {
-            "internalType": "uint256",
-            "name": "Hos_id",
-            "type": "uint256"
-          }
-        ],
-        "internalType": "struct medEx.Doctor[]",
-        "name": "",
-        "type": "tuple[]"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "getPatient",
-    "outputs": [
-      {
-        "components": [
-          {
-            "internalType": "string",
-            "name": "PatientName",
-            "type": "string"
-          },
-          {
-            "internalType": "address",
-            "name": "patientid",
-            "type": "address"
-          },
-          {
-            "internalType": "uint256",
-            "name": "contact",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "age",
-            "type": "uint256"
-          },
-          {
-            "internalType": "string",
-            "name": "gender",
-            "type": "string"
-          }
-        ],
-        "internalType": "struct medEx.Patient[]",
-        "name": "",
-        "type": "tuple[]"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "getReport",
-    "outputs": [
-      {
-        "components": [
-          {
-            "internalType": "string",
-            "name": "PatientName",
-            "type": "string"
-          },
-          {
-            "internalType": "address",
-            "name": "patientid",
-            "type": "address"
-          },
-          {
-            "internalType": "string",
-            "name": "Bloodgrp",
-            "type": "string"
-          },
-          {
-            "internalType": "string",
-            "name": "DOB",
-            "type": "string"
-          },
-          {
-            "internalType": "string",
-            "name": "gender",
-            "type": "string"
-          },
-          {
-            "internalType": "uint256",
-            "name": "age",
-            "type": "uint256"
-          },
-          {
-            "internalType": "string",
-            "name": "Hos_name",
-            "type": "string"
-          },
-          {
-            "internalType": "string",
-            "name": "Doc_name",
-            "type": "string"
-          },
-          {
-            "internalType": "bool",
-            "name": "diabetes",
-            "type": "bool"
-          }
-        ],
-        "internalType": "struct medEx.Report[]",
-        "name": "",
-        "type": "tuple[]"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "string",
-        "name": "_patientname",
-        "type": "string"
-      },
-      {
-        "internalType": "address",
-        "name": "_pid",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_age",
-        "type": "uint256"
-      },
-      {
-        "internalType": "string",
-        "name": "_gender",
-        "type": "string"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_contact",
-        "type": "uint256"
-      }
-    ],
-    "name": "patientRegistration",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "name": "patient_data",
-    "outputs": [
-      {
-        "internalType": "string",
-        "name": "PatientName",
-        "type": "string"
-      },
-      {
-        "internalType": "address",
-        "name": "patientid",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "contact",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "age",
-        "type": "uint256"
-      },
-      {
-        "internalType": "string",
-        "name": "gender",
-        "type": "string"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "name": "patients",
-    "outputs": [
-      {
-        "internalType": "string",
-        "name": "PatientName",
-        "type": "string"
-      },
-      {
-        "internalType": "address",
-        "name": "patientid",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "contact",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "age",
-        "type": "uint256"
-      },
-      {
-        "internalType": "string",
-        "name": "gender",
-        "type": "string"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "name": "records",
-    "outputs": [
-      {
-        "internalType": "string",
-        "name": "PatientName",
-        "type": "string"
-      },
-      {
-        "internalType": "address",
-        "name": "patientid",
-        "type": "address"
-      },
-      {
-        "internalType": "string",
-        "name": "Bloodgrp",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "DOB",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "gender",
-        "type": "string"
-      },
-      {
-        "internalType": "uint256",
-        "name": "age",
-        "type": "uint256"
-      },
-      {
-        "internalType": "string",
-        "name": "Hos_name",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "Doc_name",
-        "type": "string"
-      },
-      {
-        "internalType": "bool",
-        "name": "diabetes",
-        "type": "bool"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "name": "rep_data",
-    "outputs": [
-      {
-        "internalType": "string",
-        "name": "PatientName",
-        "type": "string"
-      },
-      {
-        "internalType": "address",
-        "name": "patientid",
-        "type": "address"
-      },
-      {
-        "internalType": "string",
-        "name": "Bloodgrp",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "DOB",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "gender",
-        "type": "string"
-      },
-      {
-        "internalType": "uint256",
-        "name": "age",
-        "type": "uint256"
-      },
-      {
-        "internalType": "string",
-        "name": "Hos_name",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "Doc_name",
-        "type": "string"
-      },
-      {
-        "internalType": "bool",
-        "name": "diabetes",
-        "type": "bool"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "report_count",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  }
-]
+[
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "Patient_id",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "Patient_Name",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "Blood_Group",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "DateOfBirth",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "gender",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "Hos_name",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "Doc_name",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "age",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "diabetes",
+          "type": "bool"
+        }
+      ],
+      "name": "addReport",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "dc_data",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "Lab_name",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "lab_id",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "reco_hospitalname",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "reco_doc_name",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "dcentres",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "Lab_name",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "lab_id",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "reco_hospitalname",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "reco_doc_name",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_labname",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "_lab",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "_reco_hospitalname",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_reco_docname",
+          "type": "string"
+        }
+      ],
+      "name": "diagnosticCenterRegistration",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "doc_data",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "DocName",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "DocId",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "Doc_spec",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "Hos_Name",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "Hos_id",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "Doctor_name",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "doctor_id",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "doc_specializaton",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "Hospital_Name",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "Hospital_id",
+          "type": "uint256"
+        }
+      ],
+      "name": "doctorRegistration",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "doctors",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "DocName",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "DocId",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "Doc_spec",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "Hos_Name",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "Hos_id",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getDC",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "string",
+              "name": "Lab_name",
+              "type": "string"
+            },
+            {
+              "internalType": "address",
+              "name": "lab_id",
+              "type": "address"
+            },
+            {
+              "internalType": "string",
+              "name": "reco_hospitalname",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "reco_doc_name",
+              "type": "string"
+            }
+          ],
+          "internalType": "struct medEx.DiagnosticCenter[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getDoctor",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "string",
+              "name": "DocName",
+              "type": "string"
+            },
+            {
+              "internalType": "address",
+              "name": "DocId",
+              "type": "address"
+            },
+            {
+              "internalType": "string",
+              "name": "Doc_spec",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "Hos_Name",
+              "type": "string"
+            },
+            {
+              "internalType": "uint256",
+              "name": "Hos_id",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct medEx.Doctor[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getPatient",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "string",
+              "name": "PatientName",
+              "type": "string"
+            },
+            {
+              "internalType": "address",
+              "name": "patientid",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "contact",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "age",
+              "type": "uint256"
+            },
+            {
+              "internalType": "string",
+              "name": "gender",
+              "type": "string"
+            }
+          ],
+          "internalType": "struct medEx.Patient[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getReport",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "string",
+              "name": "PatientName",
+              "type": "string"
+            },
+            {
+              "internalType": "address",
+              "name": "patientid",
+              "type": "address"
+            },
+            {
+              "internalType": "string",
+              "name": "Bloodgrp",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "DOB",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "gender",
+              "type": "string"
+            },
+            {
+              "internalType": "uint256",
+              "name": "age",
+              "type": "uint256"
+            },
+            {
+              "internalType": "string",
+              "name": "Hos_name",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "Doc_name",
+              "type": "string"
+            },
+            {
+              "internalType": "bool",
+              "name": "diabetes",
+              "type": "bool"
+            }
+          ],
+          "internalType": "struct medEx.Report[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_patientname",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "_pid",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_age",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "_gender",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_contact",
+          "type": "uint256"
+        }
+      ],
+      "name": "patientRegistration",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "patient_data",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "PatientName",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "patientid",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "contact",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "age",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "gender",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "patients",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "PatientName",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "patientid",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "contact",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "age",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "gender",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "records",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "PatientName",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "patientid",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "Bloodgrp",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "DOB",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "gender",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "age",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "Hos_name",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "Doc_name",
+          "type": "string"
+        },
+        {
+          "internalType": "bool",
+          "name": "diabetes",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "rep_data",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "PatientName",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "patientid",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "Bloodgrp",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "DOB",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "gender",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "age",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "Hos_name",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "Doc_name",
+          "type": "string"
+        },
+        {
+          "internalType": "bool",
+          "name": "diabetes",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "report_count",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ]
