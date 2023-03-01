@@ -110,7 +110,7 @@ function AuthProvider({ children }) {
       .connect(signer)
       .diagnosticCenterRegistration(
         formData.lab_name,
-        formData.lab_id,
+        formData.lab_id,  
         formData._reco_hospitalname,
         formData._reco_docname
       );
@@ -146,29 +146,38 @@ function AuthProvider({ children }) {
       }
   }
 
-    const addReport = async (contract, formData) => {
-      try {
-        const signer = await contract.provider.getSigner();
-        const transaction = await contract.connect(signer).addReport(
-          formData.Patient_id,
-          formData.Patient_Name,
-          formData.Blood_Group,
-          formData.DateOfBirth,
-          formData.gender,
-          formData.Hos_name,
-          formData.Doc_name,
-          formData.age,
-          // formData.Symptoms,
-          // formData.Allergies,
-          formData.diabetes,
-        );
-        await transaction.wait();
-        toast.success("The Report has been generated and sent to the Patient");
-      } catch (err) {
-        console.log(err);
-        toast.error(err.message);
-      }
+  const addReport = async (contract, formData) => {
+    try {
+      const signer = await contract.provider.getSigner();
+      const transaction = await contract.connect(signer).addReport(
+        formData.Patient_id,
+        formData.Patient_Name,
+        formData.Blood_Group,
+        formData.DateOfBirth,
+        formData.gender,
+        formData.Hos_name,
+        formData.Doc_name,
+        formData.age,
+        // formData.Symptoms,
+        // formData.Allergies,
+        formData.diabetes,
+      );
+      await transaction.wait();
+      toast.success("The Report has been generated and sent to the Patient");
+    } catch (err) {
+      console.log(err);
+      toast.error(err.message);
+    }
+  };
+
+  const checkIfDC = async (contract, accountAddress) => {
+    await getDiagnosticCenters(contract)
+    // console.log(accountAddress);
+    for (var j = 0; j < diagnosticCenters.length; j++){
+      // console.log(diagnosticCenters[j].lab_id);
+      if (diagnosticCenters[j].lab_id === accountAddress) return true;
     };
+  }
 
   // const registerUser = async (user) => {
   //   await axios
@@ -233,6 +242,7 @@ function AuthProvider({ children }) {
         patientRegistration: patientRegistration,
         addReport: addReport,
         getReport:getReport,
+        checkIfDC:checkIfDC,
         reportUrl: reportUrl,
         setReportUrl: setReportUrl,
         // getUsers: getUsers,

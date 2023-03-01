@@ -1,13 +1,16 @@
 import { Box, Button, Container, TextField, Typography } from '@mui/material';
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../context/authContext';
 import { ContractContext } from '../context/contractContext';
 // import AddBoxSharpIcon from "@mui/icons-material/AddBoxSharp";
 import AddIcon from "@mui/icons-material/Add";
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 function AddReport() {
    const contractContext = useContext(ContractContext);
    const authContext = useContext(AuthContext);
+   const navigate = useNavigate();
 
    const [formData, setFormData] = useState({
      Patient_id: "",
@@ -49,6 +52,17 @@ function AddReport() {
      const contract = contractContext.medEx;
      await authContext.addReport(contract, formData);
    };
+
+   useEffect(() => {
+     const checkifDC = async () => {
+      const checkIfDC = await authContext.checkIfDC(contractContext.medEx,contractContext.account);
+      if(!checkIfDC){
+        toast.error("Only Diagnostic Center can add a Report")
+        navigate('/')
+      }
+    }
+    checkifDC();
+   }, []);
 
    return (
      <Box>
