@@ -7,19 +7,23 @@ const AuthContext = createContext();
 
 function AuthProvider({ children }) {
   // const [user, setUser] = useLocalStorage("user", {});
-  const [reportUrl, setReportUrl] = useState("https://bafybeici6hjxanzyqtimbibe4zff3iiqcclzwzbgg5y7h3v4kfwq5hne4q.ipfs.dweb.link/")
+  const [reportUrl, setReportUrl] = useState(
+    "https://bafybeici6hjxanzyqtimbibe4zff3iiqcclzwzbgg5y7h3v4kfwq5hne4q.ipfs.dweb.link/"
+  );
   const [user, setUser] = useState({
-    username:"",
+    username: "",
     emailAddress: "",
     profileStatus: "",
-    url:""
-  })
+    url: "",
+  });
+  // eslint-disable-next-line
   const [users, setUsers] = useState([]);
   const [patients, setPatients] = useState([]);
   const [doctors, setDoctors] = useState([]);
   const [reports, setReports] = useState([]);
   const [diagnosticCenters, setDiagnosticCenters] = useState([]);
   const [token, setToken] = useLocalStorage("token", "");
+  // eslint-disable-next-line
   const headers = {
     Authorization: token,
     "Content-Type": "application/json",
@@ -34,18 +38,16 @@ function AuthProvider({ children }) {
   });
 
   const getPatients = async (contract) => {
-      try {
-        const signer = await contract.provider.getSigner();
-        const patients = await contract
-          .connect(signer)
-          .getPatient();
-        console.log(patients)
-        setPatients(patients)
-        console.log("Patients fetched Successfully");
-      } catch (err) {
-        console.log(err);
-      }
-  }
+    try {
+      const signer = await contract.provider.getSigner();
+      const patients = await contract.connect(signer).getPatient();
+      console.log(patients);
+      setPatients(patients);
+      console.log("Patients fetched Successfully");
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const getDoctors = async (contract) => {
     try {
@@ -83,68 +85,66 @@ function AuthProvider({ children }) {
   };
 
   const doctorRegistration = async (contract, formData) => {
-    try{
-    const signer = await contract.provider.getSigner();
-    const transaction = await contract
-      .connect(signer)
-      .doctorRegistration(
-        formData.Doctor_name,
-        formData.doctor_id,
-        formData.doc_specialization,
-        formData.Hospital_name,
-        formData.Hospital_id
-      );
-    await transaction.wait();
-    toast.success("Registration for Doctor is Done"); 
-    } catch (err) {
-      console.log(err);
-      toast.error(err.message)
-    }
-  }
-
-  const diagnosticCenterRegistration = async (contract, formData) => {
-    try{
-      console.log(contract)
-    const signer = await contract.provider.getSigner();
-    const transaction = await contract
-      .connect(signer)
-      .diagnosticCenterRegistration(
-        formData.lab_name,
-        formData.lab_id,  
-        formData._reco_hospitalname,
-        formData._reco_docname
-      );
-    await transaction.wait();
-    toast.success(
-      "Registration for Diagnostic Center is Done"
-    );
+    try {
+      const signer = await contract.provider.getSigner();
+      const transaction = await contract
+        .connect(signer)
+        .doctorRegistration(
+          formData.Doctor_name,
+          formData.doctor_id,
+          formData.doc_specialization,
+          formData.Hospital_name,
+          formData.Hospital_id
+        );
+      await transaction.wait();
+      toast.success("Registration for Doctor is Done");
     } catch (err) {
       console.log(err);
       toast.error(err.message);
     }
-  }
+  };
+
+  const diagnosticCenterRegistration = async (contract, formData) => {
+    try {
+      console.log(contract);
+      const signer = await contract.provider.getSigner();
+      const transaction = await contract
+        .connect(signer)
+        .diagnosticCenterRegistration(
+          formData.lab_name,
+          formData.lab_id,
+          formData._reco_hospitalname,
+          formData._reco_docname
+        );
+      await transaction.wait();
+      toast.success("Registration for Diagnostic Center is Done");
+    } catch (err) {
+      console.log(err);
+      toast.error(err.message);
+    }
+  };
 
   const patientRegistration = async (contract, formData) => {
-    try{
-      console.log("authContext")
-     const signer = await contract.provider.getSigner();
-     const transaction = await contract
-       .connect(signer)
-       .patientRegistration(
-         formData._patientname,
-         formData._pid,
-         formData._age,
-         formData._gender,
-         formData._contact
-       );
-    await transaction.wait();
+    try {
+      console.log("authContext");
+      const signer = await contract.provider.getSigner();
+      const transaction = await contract
+        .connect(signer)
+        .patientRegistration(
+          formData._patientname,
+          formData._pid,
+          formData._age,
+          formData._gender,
+          formData._contact
+        );
+      await transaction.wait();
 
-    toast.success("Registration for Patient is Done");
+      toast.success("Registration for Patient is Done");
     } catch (err) {
-        console.log(err);
-        toast.error(err.message);
-      }
-  }
+      console.log(err);
+      toast.error(err.message);
+    }
+  };
 
   const addReport = async (contract, formData) => {
     try {
@@ -160,7 +160,7 @@ function AuthProvider({ children }) {
         formData.age,
         // formData.Symptoms,
         // formData.Allergies,
-        formData.diabetes,
+        formData.diabetes
       );
       await transaction.wait();
       toast.success("The Report has been generated and sent to the Patient");
@@ -171,13 +171,13 @@ function AuthProvider({ children }) {
   };
 
   const checkIfDC = async (contract, accountAddress) => {
-    await getDiagnosticCenters(contract)
+    await getDiagnosticCenters(contract);
     // console.log(accountAddress);
-    for (var j = 0; j < diagnosticCenters.length; j++){
+    for (var j = 0; j < diagnosticCenters.length; j++) {
       // console.log(diagnosticCenters[j].lab_id);
       if (diagnosticCenters[j].lab_id === accountAddress) return true;
-    };
-  }
+    }
+  };
 
   // const registerUser = async (user) => {
   //   await axios
@@ -232,8 +232,8 @@ function AuthProvider({ children }) {
         token: token,
         patients: patients,
         doctors: doctors,
-        reports:reports,
-        diagnosticCenters:diagnosticCenters,
+        reports: reports,
+        diagnosticCenters: diagnosticCenters,
         getDiagnosticCenters: getDiagnosticCenters,
         getDoctors: getDoctors,
         getPatients: getPatients,
@@ -241,8 +241,8 @@ function AuthProvider({ children }) {
         diagnosticCenterRegistration: diagnosticCenterRegistration,
         patientRegistration: patientRegistration,
         addReport: addReport,
-        getReport:getReport,
-        checkIfDC:checkIfDC,
+        getReport: getReport,
+        checkIfDC: checkIfDC,
         reportUrl: reportUrl,
         setReportUrl: setReportUrl,
         // getUsers: getUsers,

@@ -51,18 +51,23 @@ function AddReport() {
      console.log("On Submit Clicked")
      const contract = contractContext.medEx;
      await authContext.addReport(contract, formData);
+     navigate('/dashboard/view')
    };
 
    useEffect(() => {
      const checkifDC = async () => {
-      const checkIfDC = await authContext.checkIfDC(contractContext.medEx,contractContext.account);
-      if(!checkIfDC){
-        toast.error("Only Diagnostic Center can add a Report")
-        navigate('/')
-      }
-    }
-    checkifDC();
-   }, []);
+       const checkIfDC = await authContext.checkIfDC(
+         contractContext.medEx,
+         contractContext.account
+       );
+       if (!checkIfDC) {
+        toast.error("Only Diagnostic Center can add a Report");
+        navigate("/");
+       }
+     };
+     checkifDC();
+     // eslint-disable-next-line
+   }, [contractContext.account]);
 
    return (
      <Box>

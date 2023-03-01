@@ -12,7 +12,6 @@ function ViewPatients() {
    ];
    const rowsPatients = [...authContext.patients];
    const rowsDiagnosticCenters = [...authContext.diagnosticCenters];
-   const rowsReports = [...authContext.reports];
 
     useEffect(() => {
       const loadProfileData = async () => {
@@ -187,57 +186,6 @@ function ViewPatients() {
                           <TableCell align="right">
                             {dc.reco_hospitalname}
                           </TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </TableContainer>
-              </Paper>
-            )}
-          </Box>
-          <Box sx={{ p: "1rem" }}>
-            {authContext.reports.length !== 0 && (
-              <Paper
-                sx={{
-                  p: 2,
-                  display: "flex",
-                  flexDirection: "column",
-                  backgroundColor: "#facf5a",
-                }}
-              >
-                <Typography
-                  component="h1"
-                  variant="h4"
-                  color="#277BC0"
-                  style={{
-                    display: "inline",
-                    fontWeight: "600",
-                    margin: "1rem",
-                  }}
-                >
-                  Reports
-                </Typography>
-                <TableContainer component={Paper}>
-                  <Table aria-label="simple table">
-                    <TableHead>
-                      <TableRow>
-                        <TableCell>Patient Id</TableCell>
-                        <TableCell align="right">Patient's Name</TableCell>
-                        <TableCell align="right">Gender</TableCell>
-                        <TableCell align="right">Report Type</TableCell>
-                      </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      {rowsReports.map((report) => (
-                        <TableRow key={report.patientid}>
-                          <TableCell component="th" scope="row">
-                            {report.patientid}
-                          </TableCell>
-                          <TableCell align="right">
-                            {report.PatientName}
-                          </TableCell>
-                          <TableCell align="right">{report.gender}</TableCell>
-                          <TableCell align="right">{report.Doc_name}</TableCell>
                         </TableRow>
                       ))}
                     </TableBody>
