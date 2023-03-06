@@ -18,4 +18,6 @@ Image.propTypes = {
   src: PropTypes.string.isRequired,
   width: PropTypes.string.isRequired
 };
+
+
 export default Image;

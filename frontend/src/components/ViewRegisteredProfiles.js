@@ -114,7 +114,9 @@ function ViewPatients() {
                         <TableCell align="right">Patient's Name</TableCell>
                         <TableCell align="right">Gender</TableCell>
                         <TableCell align="right">Age</TableCell>
-                        <TableCell align="right">Contact Number</TableCell>
+                        <TableCell align="right">BMI</TableCell>
+                        <TableCell align="right">No. Of Children</TableCell>
+                        <TableCell align="right">Is A Smoker?</TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
@@ -131,7 +133,13 @@ function ViewPatients() {
                             {Number(patient.age)}
                           </TableCell>
                           <TableCell align="right">
-                            {Number(patient.contact)}
+                            {Number(patient.bmi)}
+                          </TableCell>
+                          <TableCell align="right">
+                            {Number(patient.children)}
+                          </TableCell>
+                          <TableCell align="right">
+                            {Number(patient.smoker) === 1? "Yes": "No"}
                           </TableCell>
                         </TableRow>
                       ))}

@@ -25,9 +25,11 @@ function PatientSignUp() {
     _pid: contractContext.account,
     _age: "",
     _gender: "",
-    _contact: "",
+    _bmi: "",
+    _children: "",
+    _smoker: ""
   });
-  const { _patientname, _age, _gender, _contact } = formData;
+  const { _patientname, _age, _gender, _bmi, _children, _smoker } = formData;
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -129,13 +131,37 @@ function PatientSignUp() {
                   sx={{ m: 1 }}
                 />
                 <TextField
-                  label="Contact Number"
+                  label="Body Mass Index"
                   variant="outlined"
                   inputMode="number"
                   color="secondary"
                   onChange={onChange}
-                  id="_contact"
-                  value={_contact}
+                  id="_bmi"
+                  value={_bmi}
+                  fullWidth
+                  required
+                  sx={{ m: 1 }}
+                />
+                <TextField
+                  label="Enter the Number Of Children You have"
+                  variant="outlined"
+                  inputMode="number"
+                  color="secondary"
+                  onChange={onChange}
+                  id="_children"
+                  value={_children}
+                  fullWidth
+                  required
+                  sx={{ m: 1 }}
+                />
+                <TextField
+                  label="Are You A Smoker?"
+                  variant="outlined"
+                  inputMode="boolean"
+                  color="secondary"
+                  onChange={onChange}
+                  id="_smoker"
+                  value={_smoker}
                   fullWidth
                   required
                   sx={{ m: 1 }}

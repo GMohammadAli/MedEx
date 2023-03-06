@@ -1,23 +1,32 @@
-import { Box, Grid, Paper, Typography, Container, CardContent, Card, CardMedia, Button } from '@mui/material'
+import { Box, Grid, Paper, Typography, Container, Divider } from '@mui/material'
 import React, { useContext, useEffect } from 'react'
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import DoctorCard from '../components/DoctorAccessCard';
 import { AuthContext } from '../context/authContext';
+import { ContractContext } from '../context/contractContext';
 
 function AccessPage() {
-    const authContext = useContext(AuthContext)
+    const contractContext = useContext(ContractContext);
+    const authContext = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    const checkifPatient = async () => {
+      await authContext.getPatients()
+      await authContext.getDoctors();
+      const checkIfPatient = await authContext.checkIfPatient(
+        contractContext.account
+      );
+      if (!checkIfPatient) {
+        toast.error("Only Patient can access this page");
+        navigate("/");
+      }
+    };
 
     useEffect(() => {
-      const getDoctorsList = async () => {
-        await authContext.getDoctors();
-        console.log(authContext.doctors);
-      }
-
-      getDoctorsList();
+      checkifPatient();
+      // eslint-disable-next-line
     }, []);
-
-    const provideAccess = async (doctorId) => {
-      await authContext.giveAccess(doctorId);
-    }
 
     
   return (
@@ -33,7 +42,6 @@ function AccessPage() {
       }}
     >
       <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-        {/* {aut !== "undefined" && ( */}
         <Paper
           sx={{
             p: 2,
@@ -52,55 +60,17 @@ function AccessPage() {
               margin: "1rem",
             }}
           >
-            List of Doctors
+            List of Doctors Available
           </Typography>
+          <Divider />
           <Grid container>
             {authContext.doctors.map((doctor) => (
-              <Grid item md={4} style={{ display: "flex", padding: "3rem" }}>
-                <Card sx={{ maxWidth: 345, borderRadius: "20px" }}>
-                  <CardMedia
-                    component="img"
-                    height="234"
-                    image="/Images/Doctor.png"
-                    alt="/Images/Doctor.png"
-                  />
-                  <CardContent
-                  // onClick={() => {
-                  //   navigate(`/signUp/${profileTitle}`);
-                  // }}
-                  >
-                    <Typography
-                      variant="body1"
-                      color="text.primary"
-                      style={{ textAlign: "center" }}
-                    >
-                      Doctor {doctor.DocName}
-                    </Typography>
-                    <Typography
-                      variant="body1"
-                      color="text.secondary"
-                      style={{ textAlign: "center" }}
-                    >
-                      Specialization- {doctor.Doc_spec}
-                    </Typography>
-                  </CardContent>
-                  <Button
-                    type="button"
-                    style={{ backgroundColor: "red" }}
-                    size="medium"
-                    onClick={() => provideAccess(doctor.DocId)}
-                    variant="contained"
-                    disableElevation
-                    sx={{ m: 1, ml: 4, mr: 4 }}
-                  >
-                    Provide Access
-                  </Button>
-                </Card>
+              <Grid item md={4} style={{ display: "flex", padding: "3rem" }} key={doctor}>
+                <DoctorCard doctor={doctor} />
               </Grid>
             ))}
           </Grid>
         </Paper>
-        {/* )} */}
       </Container>
     </Box>
   );

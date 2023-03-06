@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState } from "react";
 import { ethers } from "ethers";
-// import axios from "axios";
+import axios from "axios";
 import { useLocalStorage } from "../Hooks/useLocalStorage";
 import {toast} from "react-toastify"
 import { ContractContext } from "./contractContext";
@@ -11,6 +11,7 @@ function AuthProvider({ children }) {
   // const [user, setUser] = useLocalStorage("user", {});
   const contractContext = useContext(ContractContext);
   const [reportUrl, setReportUrl] = useState();
+  const [patient, setPatient] = useState();
   const [user, setUser] = useState({
     username: "",
     emailAddress: "",
@@ -135,7 +136,9 @@ function AuthProvider({ children }) {
           formData._pid,
           formData._age,
           formData._gender,
-          formData._contact
+          formData._bmi,
+          formData._children,
+          formData._smoker
         );
       await transaction.wait();
 
@@ -172,51 +175,108 @@ function AuthProvider({ children }) {
 
   const checkIfDC = async (accountAddress) => {
     await getDiagnosticCenters();
-    // console.log(accountAddress);
+    // console.log(diagnosticCenters)
     for (var j = 0; j < diagnosticCenters.length; j++) {
-      // console.log(diagnosticCenters[j].lab_id);
       if (diagnosticCenters[j].lab_id === accountAddress) return true;
     }
   };
 
   const checkIfPatient = async (accountAddress) => {
     await getPatients();
-    console.log(patients)
-    // console.log(accountAddress);
+    // console.log(patients)
     for (var j = 0; j < patients.length; j++) {
-      // console.log(diagnosticCenters[j].lab_id);
       if (patients[j].patientid === accountAddress) return true;
     }
   };
 
   const giveAccess = async(doctorAddress) => {
-    if (!checkIfPatient(contractContext.account)) {
-      toast.error("Only Pateint can give access to his/her report");
-    } else {
-      try {
-        const amount = { value: ethers.utils.parseEther("2.0") };
-        const signer = await contractContext.medEx.provider.getSigner();
-        const transaction = await contractContext.medEx
-          .connect(signer)
-          .give_access(doctorAddress, amount);
-        await transaction.wait();
-        toast.success("Access has been provided!");
-      } catch (err) {
-        console.log(err);
-        toast.error(err.message);
-      }
+    try {
+      const amount = { value: ethers.utils.parseEther("2.0") };
+      const signer = await contractContext.medEx.provider.getSigner();
+      const transaction = await contractContext.medEx
+        .connect(signer)
+        .give_access(doctorAddress, amount);
+      await transaction.wait();
+      toast.success("Report Access has been provided!");
+    } catch (err) {
+      console.log(err);
+      toast.error(err.message);
     }
   }
+
+  const getDoctorAccessListForPatient = async (patientAddress) => {
+    try {
+      const signer = await contractContext.medEx.provider.getSigner();
+      const transaction = await contractContext.medEx
+        .connect(signer)
+        .get_accessed_doctorlist_for_patient(patientAddress);
+      console.log("Patient's access list provided!");
+      return transaction;
+    } catch (err) {
+      console.log(err);
+      toast.error(err.message);
+    }
+  };
+
+  const getPatientAccessListForDoctor = async (doctorAddress) => {
+    try {
+      const signer = await contractContext.medEx.provider.getSigner();
+      const transaction = await contractContext.medEx
+        .connect(signer)
+        .get_accessed_patientlist_for_doctor(doctorAddress);
+      console.log("Doctor's access list has been provided!");
+      console.log(transaction);
+      return transaction;
+    } catch (err) {
+      console.log(err);
+      toast.error(err.message);
+    }
+  };
 
   const revokeAccess = async(doctorAddress) => {
     try {
       const signer = await contractContext.medEx.provider.getSigner();
-      const transaction = await contractContext.medEx.connect(signer).revoke_access(doctorAddress);
+      const transaction = await contractContext.medEx
+        .connect(signer)
+        .revoke_access(doctorAddress);
       await transaction.wait();
-      toast.success("Access has been revoked");
+      toast.success("Report Access has been Revoked!");
     }catch(err){
       console.log(err);
       toast.error(err.message)
+    }
+  }
+
+  const getPrediction = async(patientAddress) => {
+    await getPatient(patientAddress)  
+    const sex = patient.gender === "M" ? 1 : 0;
+    const smoker = patient.smoker === true ? 1 : 0;
+    const predictionData = {
+      age: Number(patient.age),
+      sex: sex,
+      bmi: Number(patient.bmi),
+      children: Number(patient.children),
+      smoker: smoker,
+    };
+    const prediction = await axios
+     .post(`${process.env.REACT_APP_PREDICTION_URL}/predict`, predictionData)
+     .then((response) => {
+       console.log(response.data);
+       return response.data
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    return prediction
+  }
+
+  const getPatient = async (patientAddress) => {
+    await getPatients();
+    for (var j = 0; j < patients.length; j++) {
+      if (patients[j].patientid === patientAddress) {
+        setPatient(patients[j]);
+      }
     }
   }
 
@@ -258,11 +318,11 @@ function AuthProvider({ children }) {
   //     });
   // };
 
-  const logout = () => {
-    setIsAuth(false);
-    setUser({});
-    setToken("");
-  };
+  // const logout = () => {
+  //   setIsAuth(false);
+  //   setUser({});
+  //   setToken("");
+  // };
 
   return (
     <AuthContext.Provider
@@ -284,20 +344,18 @@ function AuthProvider({ children }) {
         addReport: addReport,
         getReport: getReport,
         checkIfDC: checkIfDC,
+        checkIfPatient: checkIfPatient,
+        getPrediction:getPrediction,
         reportUrl: reportUrl,
         setReportUrl: setReportUrl,
         giveAccess: giveAccess,
+        getDoctorAccessListForPatient:getDoctorAccessListForPatient,
+        getPatientAccessListForDoctor,
         revokeAccess: revokeAccess,
-        checkIfPatient:checkIfPatient,
         // getUsers: getUsers,
         // registerUser: registerUser,
         // loginUser: loginUser,
-
-        // user,
-        // profileStatus, doctor or patient or center
-        // registration specific to the user
-        //
-        logout: logout,
+        // logout: logout,
       }}
     >
       {children}

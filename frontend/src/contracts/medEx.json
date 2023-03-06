@@ -371,6 +371,21 @@
               "type": "string"
             },
             {
+              "internalType": "uint256",
+              "name": "bmi",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "children",
+              "type": "uint256"
+            },
+            {
+              "internalType": "bool",
+              "name": "smoker",
+              "type": "bool"
+            },
+            {
               "internalType": "address[]",
               "name": "doctorAccessList",
               "type": "address[]"
@@ -519,8 +534,18 @@
         },
         {
           "internalType": "uint256",
-          "name": "_contact",
+          "name": "_bmi",
           "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_children",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "_smoker",
+          "type": "bool"
         }
       ],
       "name": "patientRegistration",
@@ -562,6 +587,21 @@
           "internalType": "string",
           "name": "gender",
           "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "bmi",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "children",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "smoker",
+          "type": "bool"
         }
       ],
       "stateMutability": "view",
@@ -601,6 +641,21 @@
           "internalType": "string",
           "name": "gender",
           "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "bmi",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "children",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "smoker",
+          "type": "bool"
         }
       ],
       "stateMutability": "view",

@@ -33,7 +33,10 @@ contract medEx {
         uint contact;
         uint age;
         string gender;
-        address [] doctorAccessList;
+        uint bmi;
+        uint children;
+        bool smoker;
+        address []  doctorAccessList;
     }
 
     struct Doctor {
@@ -177,7 +180,6 @@ contract medEx {
         for(uint i = 0; i < alreadyreg.length; i++)
         {
         require(_lab != alreadyreg[i], "Already Registered");
-
         }
         DiagnosticCenter memory dc;
 
@@ -206,12 +208,13 @@ contract medEx {
         address _pid,
         uint _age,
         string memory _gender,
-        uint _contact
+        uint _bmi,
+        uint _children,
+        bool _smoker
     ) public {
         for(uint i = 0; i < alreadyreg.length; i++)
         {
         require(_pid != alreadyreg[i], "Already Registered");
-
         }
 
         require(_pid != lab, "Patient cannot be the Labwala");
@@ -222,7 +225,9 @@ contract medEx {
         p.patientid = _pid;
         p.age = _age;
         p.gender = _gender;
-        p.contact = _contact;
+        p.bmi = _bmi;
+        p.children = _children;
+        p.smoker = _smoker;
 
         patient_data.push(p);
 
@@ -235,6 +240,11 @@ contract medEx {
 
     function give_access(address addr) payable public{
         require(msg.value == 2 ether);
+        
+        for(uint i = 0; i < doctors[addr].patientAccessList.length; i++)
+        {
+            require(msg.sender != doctors[addr].patientAccessList[i],"Already have an Access");
+        }
 
         doctors[addr].patientAccessList.push(msg.sender);
         patients[msg.sender].doctorAccessList.push(addr);

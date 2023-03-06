@@ -1,23 +1,48 @@
 import { Box, Button, Container, Grid, Link, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { AuthContext } from "../context/authContext";
 import { ContractContext } from "../context/contractContext";
 
 function ViewReport() {
   const { reportUrl, getReport } = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
   const contractContext = useContext(ContractContext);
+  const [ prediction, setPrediction] = useState(1);
 
   const { reports } = useContext(AuthContext)
   const navigate = useNavigate();
   const rowsReports = [...reports];
+
+  const predictClaim = async (patientAddress) => {
+    const predictedValue = await authContext.getPrediction(patientAddress);
+    setPrediction(parseInt(predictedValue));
+  };
+
+  const checkifPatient = async () => {
+    await authContext.getPatients();
+    await authContext.getDoctors();
+    const checkIfPatient = await authContext.checkIfPatient(
+      contractContext.account
+    );
+    if (!checkIfPatient) {
+      toast.error("Only Patient can access this page");
+      navigate("/");
+    }
+  };
+
+  const getReports = async () => {
+    await getReport(contractContext.medEx);
+  };
+
   useEffect(() => {
-    const getReports = async () => {
-      await getReport(contractContext.medEx);
-    };
+    checkifPatient(); 
     getReports();
     // eslint-disable-next-line
-  }, []);
+  }, [contractContext.account]);
+
+
   return (
     <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
       <Grid container spacing={3}>
@@ -104,6 +129,35 @@ function ViewReport() {
                     Give Report Access to Doctors?
                   </Button>
                 </Paper>
+              )}
+            </Box>
+            <Box
+              sx={{
+                p: 2,
+                display: "flex",
+                alignItems: "column",
+                justifyContent: "center",
+              }}
+            >
+              {prediction === 1 ? (
+                <Button
+                  onClick={() => {
+                    predictClaim(contractContext.account);
+                  }}
+                >
+                  Insurance Claim Prediction
+                </Button>
+              ) : (
+                <Typography
+                  component="h1"
+                  variant="h4"
+                  color="#277BC0"
+                  style={{
+                    display: "inline",
+                    fontWeight: "600",
+                    margin: "1rem",
+                  }}
+                >You Can Apply upto Rs.{prediction} of Insurance Claim</Typography>
               )}
             </Box>
           </Paper>
