@@ -6,6 +6,7 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import GroupAddIcon from "@mui/icons-material/GroupAdd";
 // import LogoutIcon from "@mui/icons-material/Logout";
 import DriveFolderUploadIcon from "@mui/icons-material/DriveFolderUpload";
+import AccessibilityNewIcon from "@mui/icons-material/AccessibilityNew";
 import SourceIcon from "@mui/icons-material/Source";
 import ListIcon from "@mui/icons-material/List";
 import { Link } from "react-router-dom";
@@ -21,6 +22,17 @@ export const Sidebar = (
           <DashboardIcon />
         </ListItemIcon>
         <ListItemText primary="Home" />
+      </ListItemButton>
+    </Link>
+    <Link
+      style={{ textDecoration: "none", color: "#000", fontSize: "1rem" }}
+      to="access"
+    >
+      <ListItemButton>
+        <ListItemIcon>
+          <AccessibilityNewIcon />
+        </ListItemIcon>
+        <ListItemText primary="Access Management" />
       </ListItemButton>
     </Link>
     <Link

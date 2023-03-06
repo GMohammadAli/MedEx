@@ -22,6 +22,7 @@ import AddReport from "./pages/AddReport";
 import UploadReport from "./components/UploadReport";
 import ViewReport from "./components/ViewReport";
 import ViewRegisteredProfiles from "./components/ViewRegisteredProfiles";
+import AccessPage from "./pages/AccessPage";
 
 const theme = createTheme({
   // backgroundColor:"#FFB200",
@@ -65,6 +66,7 @@ function App() {
                 <Route path="dashboard" element={<Dashboard />}>
                   <Route path="" element={<Main />} />
                   <Route path="verify" element={<AddUser />} />
+                  <Route path="access" element={<AccessPage/>} />
                   <Route path="upload" element={<UploadReport />} />
                   <Route path="view" element={<ViewReport />} />
                   <Route path="getProfiles" element={<ViewRegisteredProfiles />} />

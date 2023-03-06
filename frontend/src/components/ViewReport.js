@@ -1,5 +1,6 @@
-import { Box, Container, Grid, Link, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
+import { Box, Button, Container, Grid, Link, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
 import React, { useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/authContext";
 import { ContractContext } from "../context/contractContext";
 
@@ -8,6 +9,7 @@ function ViewReport() {
   const contractContext = useContext(ContractContext);
 
   const { reports } = useContext(AuthContext)
+  const navigate = useNavigate();
   const rowsReports = [...reports];
   useEffect(() => {
     const getReports = async () => {
@@ -21,15 +23,24 @@ function ViewReport() {
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
-            <Typography variant="h6" gutterBottom>
-              View Reports
+            <Typography
+              component="h1"
+              variant="h4"
+              color="#277BC0"
+              style={{
+                display: "inline",
+                fontWeight: "600",
+                margin: "1rem",
+              }}
+            >
+              Your Reports
             </Typography>
-            <Box component="div" sx={{ mt: 4, mb: 4 }}>
+            {/* <Box component="div" sx={{ mt: 4, mb: 4 }}>
               X-Ray Report:-
               <Link href={reportUrl} underline="always">
                 {reportUrl}
               </Link>
-            </Box>
+            </Box> */}
             <Box sx={{ p: "1rem" }}>
               {reports.length !== 0 && (
                 <Paper
@@ -40,18 +51,6 @@ function ViewReport() {
                     backgroundColor: "#facf5a",
                   }}
                 >
-                  <Typography
-                    component="h1"
-                    variant="h4"
-                    color="#277BC0"
-                    style={{
-                      display: "inline",
-                      fontWeight: "600",
-                      margin: "1rem",
-                    }}
-                  >
-                    Reports
-                  </Typography>
                   <TableContainer component={Paper}>
                     <Table aria-label="simple table">
                       <TableHead>
@@ -60,6 +59,10 @@ function ViewReport() {
                           <TableCell align="right">Patient's Name</TableCell>
                           <TableCell align="right">Gender</TableCell>
                           <TableCell align="right">Report Type</TableCell>
+                          <TableCell align="right">Blood Group</TableCell>
+                          <TableCell align="right">Date Of Birth</TableCell>
+                          <TableCell align="right">Has Diabetes?</TableCell>
+                          <TableCell align="right">Hospital Name</TableCell>
                         </TableRow>
                       </TableHead>
                       <TableBody>
@@ -73,13 +76,33 @@ function ViewReport() {
                             </TableCell>
                             <TableCell align="right">{report.gender}</TableCell>
                             <TableCell align="right">
-                              {report.Doc_name}
+                              <Link href={reportUrl} underline="always">
+                                {report.Doc_name}
+                              </Link>
+                            </TableCell>
+                            <TableCell align="right">
+                              {report.Bloodgrp}
+                            </TableCell>
+                            <TableCell align="right">{report.DOB}</TableCell>
+                            <TableCell align="right">
+                              {report.diabetes.toString()}
+                            </TableCell>
+                            <TableCell align="right">
+                              {report.Hos_name}
                             </TableCell>
                           </TableRow>
                         ))}
                       </TableBody>
                     </Table>
                   </TableContainer>
+                  <Button
+                    sx={{ m: "1rem" }}
+                    onClick={() => {
+                      navigate("/dashboard/access");
+                    }}
+                  >
+                    Give Report Access to Doctors?
+                  </Button>
                 </Paper>
               )}
             </Box>

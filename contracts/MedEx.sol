@@ -33,6 +33,7 @@ contract medEx {
         uint contact;
         uint age;
         string gender;
+        address [] doctorAccessList;
     }
 
     struct Doctor {
@@ -41,6 +42,7 @@ contract medEx {
         string Doc_spec;
         string Hos_Name;
         uint Hos_id;
+        address [] patientAccessList;
     }
 
     struct DiagnosticCenter {
@@ -229,6 +231,60 @@ contract medEx {
         alreadyreg.push(_pid);
 
         
+    }
+
+    function give_access(address addr) payable public{
+        require(msg.value == 2 ether);
+
+        doctors[addr].patientAccessList.push(msg.sender);
+        patients[msg.sender].doctorAccessList.push(addr);
+
+    }
+
+    function get_accessed_doctorlist_for_patient(address addr) public view returns (address[] memory){
+        address[]  memory doctor_address = patients[addr].doctorAccessList;
+
+        return doctor_address;
+    }
+
+    function get_accessed_patientlist_for_doctor(address addr) public view returns (address[] memory){
+        address[]  memory patient_address = doctors[addr].patientAccessList;
+
+        return patient_address;
+    }
+
+    function remove_element_in_array(address[] storage Array, address addr) internal{
+        bool check = false;
+        uint del_index = 0;
+        for(uint i = 0; i<Array.length; i++){
+            if(Array[i] == addr){
+                check = true;
+                del_index = i;
+            }
+        }
+        if(!check) revert();
+        else{
+            if(Array.length == 1){
+                delete Array[del_index];
+            }
+            else {
+                Array[del_index] = Array[Array.length - 1];
+                delete Array[Array.length - 1];
+
+            }
+            Array.pop();
+        }
+    }
+
+    function remove_patient(address paddr, address daddr) public {
+        remove_element_in_array(doctors[daddr].patientAccessList, paddr);
+        remove_element_in_array(patients[paddr].doctorAccessList, daddr);
+    }
+
+
+
+    function revoke_access(address daddr) public{
+        remove_patient(msg.sender,daddr);
     }
 
     

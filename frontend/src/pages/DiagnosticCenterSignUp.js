@@ -38,8 +38,7 @@ function DiagnosticCenterSignUp() {
 
   const onSubmitDiagnosticCenter = async (e) => {
     e.preventDefault();
-    const contract = contractContext.medEx;
-    await authContext.diagnosticCenterRegistration(contract, formData);
+    await authContext.diagnosticCenterRegistration(formData);
     navigate("/dashboard/getProfiles");
   };
 

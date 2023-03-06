@@ -38,8 +38,7 @@ function PatientSignUp() {
 
   const onSubmitPatient = async (e) => {
     e.preventDefault();
-    const contract = contractContext.medEx;
-    await authContext.patientRegistration(contract, formData);
+    await authContext.patientRegistration(formData);
     navigate("/dashboard/getProfiles");
   };
 

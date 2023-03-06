@@ -1,4 +1,4 @@
-[
+ [
     {
       "inputs": [
         {
@@ -324,6 +324,11 @@
               "internalType": "uint256",
               "name": "Hos_id",
               "type": "uint256"
+            },
+            {
+              "internalType": "address[]",
+              "name": "patientAccessList",
+              "type": "address[]"
             }
           ],
           "internalType": "struct medEx.Doctor[]",
@@ -364,6 +369,11 @@
               "internalType": "string",
               "name": "gender",
               "type": "string"
+            },
+            {
+              "internalType": "address[]",
+              "name": "doctorAccessList",
+              "type": "address[]"
             }
           ],
           "internalType": "struct medEx.Patient[]",
@@ -432,6 +442,57 @@
         }
       ],
       "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "addr",
+          "type": "address"
+        }
+      ],
+      "name": "get_accessed_doctorlist_for_patient",
+      "outputs": [
+        {
+          "internalType": "address[]",
+          "name": "",
+          "type": "address[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "addr",
+          "type": "address"
+        }
+      ],
+      "name": "get_accessed_patientlist_for_doctor",
+      "outputs": [
+        {
+          "internalType": "address[]",
+          "name": "",
+          "type": "address[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "addr",
+          "type": "address"
+        }
+      ],
+      "name": "give_access",
+      "outputs": [],
+      "stateMutability": "payable",
       "type": "function"
     },
     {
@@ -607,6 +668,24 @@
     {
       "inputs": [
         {
+          "internalType": "address",
+          "name": "paddr",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "daddr",
+          "type": "address"
+        }
+      ],
+      "name": "remove_patient",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
           "internalType": "uint256",
           "name": "",
           "type": "uint256"
@@ -674,6 +753,19 @@
         }
       ],
       "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "daddr",
+          "type": "address"
+        }
+      ],
+      "name": "revoke_access",
+      "outputs": [],
+      "stateMutability": "nonpayable",
       "type": "function"
     }
   ]

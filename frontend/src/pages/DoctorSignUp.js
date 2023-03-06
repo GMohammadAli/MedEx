@@ -39,8 +39,7 @@ function DoctorSignUp() {
 
    const onSubmitDoctor = async (e) => {
      e.preventDefault();
-     const contract = contractContext.medEx
-     await authContext.doctorRegistration(contract , formData)
+     await authContext.doctorRegistration(formData)
      navigate("/dashboard/getProfiles");
    }
 

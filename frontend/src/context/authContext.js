@@ -1,15 +1,16 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
+import { ethers } from "ethers";
 // import axios from "axios";
 import { useLocalStorage } from "../Hooks/useLocalStorage";
 import {toast} from "react-toastify"
+import { ContractContext } from "./contractContext";
 
 const AuthContext = createContext();
 
 function AuthProvider({ children }) {
   // const [user, setUser] = useLocalStorage("user", {});
-  const [reportUrl, setReportUrl] = useState(
-    "https://bafybeici6hjxanzyqtimbibe4zff3iiqcclzwzbgg5y7h3v4kfwq5hne4q.ipfs.dweb.link/"
-  );
+  const contractContext = useContext(ContractContext);
+  const [reportUrl, setReportUrl] = useState();
   const [user, setUser] = useState({
     username: "",
     emailAddress: "",
@@ -37,11 +38,10 @@ function AuthProvider({ children }) {
     }
   });
 
-  const getPatients = async (contract) => {
+  const getPatients = async () => {
     try {
-      const signer = await contract.provider.getSigner();
-      const patients = await contract.connect(signer).getPatient();
-      console.log(patients);
+      const signer = await contractContext.medEx.provider.getSigner();
+      const patients = await contractContext.medEx.connect(signer).getPatient();
       setPatients(patients);
       console.log("Patients fetched Successfully");
     } catch (err) {
@@ -49,10 +49,10 @@ function AuthProvider({ children }) {
     }
   };
 
-  const getDoctors = async (contract) => {
+  const getDoctors = async () => {
     try {
-      const signer = await contract.provider.getSigner();
-      const doctors = await contract.connect(signer).getDoctor();
+      const signer = await contractContext.medEx.provider.getSigner();
+      const doctors = await contractContext.medEx.connect(signer).getDoctor();
       console.log(doctors);
       setDoctors(doctors);
       console.log("Doctors fetched Successfully");
@@ -61,10 +61,10 @@ function AuthProvider({ children }) {
     }
   };
 
-  const getReport = async (contract) => {
+  const getReport = async () => {
     try {
-      const signer = await contract.provider.getSigner();
-      const reports = await contract.connect(signer).getReport();
+      const signer = await contractContext.medEx.provider.getSigner();
+      const reports = await contractContext.medEx.connect(signer).getReport();
       console.log(reports);
       setReports(reports);
       console.log("Reports fetched Successfully");
@@ -72,10 +72,10 @@ function AuthProvider({ children }) {
       console.log(err);
     }
   };
-  const getDiagnosticCenters = async (contract) => {
+  const getDiagnosticCenters = async () => {
     try {
-      const signer = await contract.provider.getSigner();
-      const diagnosticCenters = await contract.connect(signer).getDC();
+      const signer = await contractContext.medEx.provider.getSigner();
+      const diagnosticCenters = await contractContext.medEx.connect(signer).getDC();
       console.log(diagnosticCenters);
       setDiagnosticCenters(diagnosticCenters);
       console.log("Diagnostic Centers fetched Successfully");
@@ -84,10 +84,10 @@ function AuthProvider({ children }) {
     }
   };
 
-  const doctorRegistration = async (contract, formData) => {
+  const doctorRegistration = async (formData) => {
     try {
-      const signer = await contract.provider.getSigner();
-      const transaction = await contract
+      const signer = await contractContext.medEx.provider.getSigner();
+      const transaction = await contractContext.medEx
         .connect(signer)
         .doctorRegistration(
           formData.Doctor_name,
@@ -104,11 +104,11 @@ function AuthProvider({ children }) {
     }
   };
 
-  const diagnosticCenterRegistration = async (contract, formData) => {
+  const diagnosticCenterRegistration = async (formData) => {
     try {
-      console.log(contract);
-      const signer = await contract.provider.getSigner();
-      const transaction = await contract
+      console.log(contractContext.medEx);
+      const signer = await contractContext.medEx.provider.getSigner();
+      const transaction = await contractContext.medEx
         .connect(signer)
         .diagnosticCenterRegistration(
           formData.lab_name,
@@ -124,11 +124,11 @@ function AuthProvider({ children }) {
     }
   };
 
-  const patientRegistration = async (contract, formData) => {
+  const patientRegistration = async (formData) => {
     try {
       console.log("authContext");
-      const signer = await contract.provider.getSigner();
-      const transaction = await contract
+      const signer = await contractContext.medEx.provider.getSigner();
+      const transaction = await contractContext.medEx
         .connect(signer)
         .patientRegistration(
           formData._patientname,
@@ -146,10 +146,10 @@ function AuthProvider({ children }) {
     }
   };
 
-  const addReport = async (contract, formData) => {
+  const addReport = async (formData) => {
     try {
-      const signer = await contract.provider.getSigner();
-      const transaction = await contract.connect(signer).addReport(
+      const signer = await contractContext.medEx.provider.getSigner();
+      const transaction = await contractContext.medEx.connect(signer).addReport(
         formData.Patient_id,
         formData.Patient_Name,
         formData.Blood_Group,
@@ -170,14 +170,55 @@ function AuthProvider({ children }) {
     }
   };
 
-  const checkIfDC = async (contract, accountAddress) => {
-    await getDiagnosticCenters(contract);
+  const checkIfDC = async (accountAddress) => {
+    await getDiagnosticCenters();
     // console.log(accountAddress);
     for (var j = 0; j < diagnosticCenters.length; j++) {
       // console.log(diagnosticCenters[j].lab_id);
       if (diagnosticCenters[j].lab_id === accountAddress) return true;
     }
   };
+
+  const checkIfPatient = async (accountAddress) => {
+    await getPatients();
+    console.log(patients)
+    // console.log(accountAddress);
+    for (var j = 0; j < patients.length; j++) {
+      // console.log(diagnosticCenters[j].lab_id);
+      if (patients[j].patientid === accountAddress) return true;
+    }
+  };
+
+  const giveAccess = async(doctorAddress) => {
+    if (!checkIfPatient(contractContext.account)) {
+      toast.error("Only Pateint can give access to his/her report");
+    } else {
+      try {
+        const amount = { value: ethers.utils.parseEther("2.0") };
+        const signer = await contractContext.medEx.provider.getSigner();
+        const transaction = await contractContext.medEx
+          .connect(signer)
+          .give_access(doctorAddress, amount);
+        await transaction.wait();
+        toast.success("Access has been provided!");
+      } catch (err) {
+        console.log(err);
+        toast.error(err.message);
+      }
+    }
+  }
+
+  const revokeAccess = async(doctorAddress) => {
+    try {
+      const signer = await contractContext.medEx.provider.getSigner();
+      const transaction = await contractContext.medEx.connect(signer).revoke_access(doctorAddress);
+      await transaction.wait();
+      toast.success("Access has been revoked");
+    }catch(err){
+      console.log(err);
+      toast.error(err.message)
+    }
+  }
 
   // const registerUser = async (user) => {
   //   await axios
@@ -245,6 +286,9 @@ function AuthProvider({ children }) {
         checkIfDC: checkIfDC,
         reportUrl: reportUrl,
         setReportUrl: setReportUrl,
+        giveAccess: giveAccess,
+        revokeAccess: revokeAccess,
+        checkIfPatient:checkIfPatient,
         // getUsers: getUsers,
         // registerUser: registerUser,
         // loginUser: loginUser,

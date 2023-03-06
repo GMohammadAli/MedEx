@@ -48,16 +48,14 @@ function AddReport() {
 
    const onSubmitReport = async (e) => {
      e.preventDefault();
-     console.log("On Submit Clicked")
-     const contract = contractContext.medEx;
-     await authContext.addReport(contract, formData);
+    //  console.log("On Submit Clicked")
+     await authContext.addReport(formData);
      navigate('/dashboard/view')
    };
 
    useEffect(() => {
      const checkifDC = async () => {
        const checkIfDC = await authContext.checkIfDC(
-         contractContext.medEx,
          contractContext.account
        );
        if (!checkIfDC) {
@@ -67,7 +65,7 @@ function AddReport() {
      };
      checkifDC();
      // eslint-disable-next-line
-   }, [contractContext.account]);
+   }, []);
 
    return (
      <Box>
