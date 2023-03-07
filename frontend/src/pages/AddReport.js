@@ -50,7 +50,7 @@ function AddReport() {
      e.preventDefault();
     //  console.log("On Submit Clicked")
      await authContext.addReport(formData);
-     navigate('/dashboard/view')
+     navigate('/dashboard/getProfiles')
    };
 
    useEffect(() => {
@@ -60,7 +60,7 @@ function AddReport() {
        );
        if (!checkIfDC) {
         toast.error("Only Diagnostic Center can add a Report");
-        navigate("/");
+        navigate("/dashboard/getProfiles");
        }
      };
      checkifDC();

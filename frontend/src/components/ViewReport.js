@@ -11,7 +11,7 @@ function ViewReport() {
   const contractContext = useContext(ContractContext);
   const [ prediction, setPrediction] = useState(1);
 
-  const { reports } = useContext(AuthContext)
+  const { reports, setReports} = useContext(AuthContext)
   const navigate = useNavigate();
   const rowsReports = [...reports];
 
@@ -21,8 +21,6 @@ function ViewReport() {
   };
 
   const checkifPatient = async () => {
-    await authContext.getPatients();
-    await authContext.getDoctors();
     const checkIfPatient = await authContext.checkIfPatient(
       contractContext.account
     );
@@ -34,6 +32,11 @@ function ViewReport() {
 
   const getReports = async () => {
     await getReport(contractContext.medEx);
+    // eslint-disable-next-line array-callback-return
+    const report = reports.filter((report) => {
+      if(report.patientid === contractContext.account) return report
+    })
+    setReports(report)
   };
 
   useEffect(() => {

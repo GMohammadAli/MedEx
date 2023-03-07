@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState } from "react";
 import { ethers } from "ethers";
 import axios from "axios";
-import { useLocalStorage } from "../Hooks/useLocalStorage";
+// import { useLocalStorage } from "../Hooks/useLocalStorage";
 import {toast} from "react-toastify"
 import { ContractContext } from "./contractContext";
 
@@ -12,32 +12,32 @@ function AuthProvider({ children }) {
   const contractContext = useContext(ContractContext);
   const [reportUrl, setReportUrl] = useState();
   const [patient, setPatient] = useState();
-  const [user, setUser] = useState({
-    username: "",
-    emailAddress: "",
-    profileStatus: "",
-    url: "",
-  });
+  // const [user, setUser] = useState({
+  //   username: "",
+  //   emailAddress: "",
+  //   profileStatus: "",
+  //   url: "",
+  // });
   // eslint-disable-next-line
   const [users, setUsers] = useState([]);
   const [patients, setPatients] = useState([]);
   const [doctors, setDoctors] = useState([]);
   const [reports, setReports] = useState([]);
   const [diagnosticCenters, setDiagnosticCenters] = useState([]);
-  const [token, setToken] = useLocalStorage("token", "");
+  // const [token, setToken] = useLocalStorage("token", "");
   // eslint-disable-next-line
-  const headers = {
-    Authorization: token,
-    "Content-Type": "application/json",
-  };
+  // const headers = {
+  //   Authorization: token,
+  //   "Content-Type": "application/json",
+  // };
 
-  const [isAuth, setIsAuth] = useState(() => {
-    if (user != null && token !== "") {
-      return true;
-    } else {
-      return false;
-    }
-  });
+  // const [isAuth, setIsAuth] = useState(() => {
+  //   if (user != null && token !== "") {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // });
 
   const getPatients = async () => {
     try {
@@ -62,7 +62,7 @@ function AuthProvider({ children }) {
     }
   };
 
-  const getReport = async () => {
+  const getReports = async () => {
     try {
       const signer = await contractContext.medEx.provider.getSigner();
       const reports = await contractContext.medEx.connect(signer).getReport();
@@ -73,6 +73,7 @@ function AuthProvider({ children }) {
       console.log(err);
     }
   };
+
   const getDiagnosticCenters = async () => {
     try {
       const signer = await contractContext.medEx.provider.getSigner();
@@ -183,9 +184,17 @@ function AuthProvider({ children }) {
 
   const checkIfPatient = async (accountAddress) => {
     await getPatients();
-    // console.log(patients)
+    console.log(patients)
     for (var j = 0; j < patients.length; j++) {
       if (patients[j].patientid === accountAddress) return true;
+    }
+  };
+
+  const checkIfDoctor = async (accountAddress) => {
+    await getDoctors();
+    console.log(doctors)
+    for (var j = 0; j < doctors.length; j++) {
+      if (doctors[j].DocId === accountAddress) return true;
     }
   };
 
@@ -261,7 +270,6 @@ function AuthProvider({ children }) {
     const prediction = await axios
      .post(`${process.env.REACT_APP_PREDICTION_URL}/predict`, predictionData)
      .then((response) => {
-       console.log(response.data);
        return response.data
       })
       .catch((err) => {
@@ -327,10 +335,6 @@ function AuthProvider({ children }) {
   return (
     <AuthContext.Provider
       value={{
-        isAuth: isAuth,
-        user: user,
-        users: users,
-        token: token,
         patients: patients,
         doctors: doctors,
         reports: reports,
@@ -342,15 +346,16 @@ function AuthProvider({ children }) {
         diagnosticCenterRegistration: diagnosticCenterRegistration,
         patientRegistration: patientRegistration,
         addReport: addReport,
-        getReport: getReport,
+        getReports: getReports,
         checkIfDC: checkIfDC,
         checkIfPatient: checkIfPatient,
-        getPrediction:getPrediction,
+        checkIfDoctor: checkIfDoctor,
+        getPrediction: getPrediction,
         reportUrl: reportUrl,
         setReportUrl: setReportUrl,
         giveAccess: giveAccess,
-        getDoctorAccessListForPatient:getDoctorAccessListForPatient,
-        getPatientAccessListForDoctor,
+        getDoctorAccessListForPatient: getDoctorAccessListForPatient,
+        getPatientAccessListForDoctor: getPatientAccessListForDoctor,
         revokeAccess: revokeAccess,
         // getUsers: getUsers,
         // registerUser: registerUser,

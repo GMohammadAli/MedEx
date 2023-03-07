@@ -1,13 +1,23 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
+import { AuthContext } from "../context/authContext";
 
 export default function Main() {
+  const authContext = useContext(AuthContext)
   useEffect(() => {
-    console.log(1);
+    const loadProfileData = async () => {
+      await authContext.getPatients();
+      console.log(authContext.patients);
+      await authContext.getDoctors();
+      await authContext.getDiagnosticCenters();
+    };
+
+    loadProfileData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <Box

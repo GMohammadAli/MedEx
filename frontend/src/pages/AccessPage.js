@@ -7,26 +7,24 @@ import { AuthContext } from '../context/authContext';
 import { ContractContext } from '../context/contractContext';
 
 function AccessPage() {
-    const contractContext = useContext(ContractContext);
-    const authContext = useContext(AuthContext);
-    const navigate = useNavigate();
+  const contractContext = useContext(ContractContext);
+  const authContext = useContext(AuthContext);
+  const navigate = useNavigate();
 
-    const checkifPatient = async () => {
-      await authContext.getPatients()
-      await authContext.getDoctors();
-      const checkIfPatient = await authContext.checkIfPatient(
-        contractContext.account
-      );
-      if (!checkIfPatient) {
-        toast.error("Only Patient can access this page");
-        navigate("/");
-      }
-    };
+  const checkifPatient = async () => {
+    const checkIfPatient = await authContext.checkIfPatient(
+      contractContext.account
+    );
+    if (!checkIfPatient) {
+      toast.error("Only a Patient can access this page");
+      navigate("/dashboard/getProfiles");
+    }
+  };
 
-    useEffect(() => {
-      checkifPatient();
-      // eslint-disable-next-line
-    }, []);
+  useEffect(() => {
+    checkifPatient();
+    // eslint-disable-next-line
+  }, []);
 
     
   return (

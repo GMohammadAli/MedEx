@@ -1,11 +1,9 @@
 import { Box, Container, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
 import React, { useContext, useEffect } from "react";
 import { AuthContext } from "../context/authContext";
-import { ContractContext } from "../context/contractContext";
 
 function ViewPatients() {
     const authContext = useContext(AuthContext)
-    const contractContext =  useContext(ContractContext)
 
    const rowsDoctors = [
     ...authContext.doctors
@@ -15,12 +13,9 @@ function ViewPatients() {
 
     useEffect(() => {
       const loadProfileData = async () => {
-        const contract = contractContext.medEx;
-        await authContext.getPatients(contract);
-        console.log(authContext.patients);
-        await authContext.getDoctors(contract);
-        await authContext.getDiagnosticCenters(contract);
-        await authContext.getReport(contract);
+        await authContext.getPatients();
+        await authContext.getDoctors();
+        await authContext.getDiagnosticCenters();
       };
 
       loadProfileData();

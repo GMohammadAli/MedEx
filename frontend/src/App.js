@@ -23,6 +23,7 @@ import UploadReport from "./components/UploadReport";
 import ViewReport from "./components/ViewReport";
 import ViewRegisteredProfiles from "./components/ViewRegisteredProfiles";
 import AccessPage from "./pages/AccessPage";
+import DoctorDiagnosisPage from "./pages/DoctorDiagnosisPage";
 
 const theme = createTheme({
   // backgroundColor:"#FFB200",
@@ -36,10 +37,6 @@ const theme = createTheme({
 function App() {
   // eslint-disable-next-line 
   const contractContext = useContext(ContractContext);
-
-  // useEffect(() => {
-  //   contractContext.loadBlockchainData();
-  // }, [contractContext])
   
   return (
     <ThemeProvider theme={theme}>
@@ -66,10 +63,17 @@ function App() {
                 <Route path="dashboard" element={<Dashboard />}>
                   <Route path="" element={<Main />} />
                   <Route path="verify" element={<AddUser />} />
-                  <Route path="access" element={<AccessPage/>} />
+                  <Route path="access" element={<AccessPage />} />
                   <Route path="upload" element={<UploadReport />} />
                   <Route path="view" element={<ViewReport />} />
-                  <Route path="getProfiles" element={<ViewRegisteredProfiles />} />
+                  <Route
+                    path="getProfiles"
+                    element={<ViewRegisteredProfiles />}
+                  />
+                  <Route
+                    path="checkReports"
+                    element={<DoctorDiagnosisPage />}
+                  />
                 </Route>
               </Routes>
             </Box>

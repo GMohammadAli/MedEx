@@ -1,20 +1,21 @@
-import React, { useState } from 'react'
+import React, { 
+  useState 
+} from 'react'
 import Card from "../components/Card"
-import { Box, Grid, TextField, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 
 function ProfileSelection() {
-  const [formData, setFormData] = useState({
-    username:"",
-    emailAddress: ""
-  })
-  const { username, emailAddress } = formData;
+  const [formData, 
+    // setFormData
+  ] = useState()
+  // const { username, emailAddress } = formData;
 
-  const onChange = (e) => {
-    setFormData((prevState) => ({
-      ...prevState,
-      [e.target.id]: e.target.value,
-    }));
-  };
+  // const onChange = (e) => {
+  //   setFormData((prevState) => ({
+  //     ...prevState,
+  //     [e.target.id]: e.target.value,
+  //   }));
+  // };
 
   return (
     <Box

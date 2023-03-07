@@ -4,6 +4,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import GroupAddIcon from "@mui/icons-material/GroupAdd";
+import HomeIcon from "@mui/icons-material/Home";
 // import LogoutIcon from "@mui/icons-material/Logout";
 import DriveFolderUploadIcon from "@mui/icons-material/DriveFolderUpload";
 import AccessibilityNewIcon from "@mui/icons-material/AccessibilityNew";
@@ -19,7 +20,7 @@ export const Sidebar = (
     >
       <ListItemButton>
         <ListItemIcon>
-          <DashboardIcon />
+          <HomeIcon />
         </ListItemIcon>
         <ListItemText primary="Home" />
       </ListItemButton>
@@ -55,6 +56,17 @@ export const Sidebar = (
           <ListIcon />
         </ListItemIcon>
         <ListItemText primary="List Of Profiles" />
+      </ListItemButton>
+    </Link>
+    <Link
+      style={{ textDecoration: "none", color: "#000", fontSize: "1rem" }}
+      to="checkReports"
+    >
+      <ListItemButton>
+        <ListItemIcon>
+          <DashboardIcon />
+        </ListItemIcon>
+        <ListItemText primary="Diagnosis Dashboard" />
       </ListItemButton>
     </Link>
     <Link
