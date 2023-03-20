@@ -35,7 +35,7 @@ function UploadReport() {
     console.log(`Uploading ${file.length} files`);
     console.log("Content added with CID:", url);
     toast.success(`Successfully Uploaded file on IPFS`)
-    navigate("/dashboard/view");
+    // navigate("/dashboard/view");
   }
   
        

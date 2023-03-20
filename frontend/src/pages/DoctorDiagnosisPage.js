@@ -1,4 +1,4 @@
-import { Box, Container, Divider, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
+import { Box, Button, Container, Divider, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
 import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -34,6 +34,11 @@ function DoctorDiagnosisPage() {
         }
  
     };
+
+    const onClickViewReport = async () => {
+      //create a bar that will disable the background and just show the report in the 
+      //desired format...just like basic alert functionality in javascript
+    }
 
     useEffect(() => {
       checkifDoctor();
@@ -88,6 +93,7 @@ function DoctorDiagnosisPage() {
                         <TableCell align="right">Date Of Birth</TableCell>
                         <TableCell align="right">Has Diabetes?</TableCell>
                         <TableCell align="right">Hospital Name</TableCell>
+                        <TableCell align="right">View Full Report?</TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
@@ -110,6 +116,15 @@ function DoctorDiagnosisPage() {
                             </TableCell>
                             <TableCell align="right">
                               {report.Hos_name}
+                            </TableCell>
+                            <TableCell>
+                              <Button
+                                sx={{ m: "1rem" }}
+                                onClick={() => {
+                                  onClickViewReport(report.patientid);}}
+                              >
+                                Full Report
+                              </Button>
                             </TableCell>
                           </TableRow>
                         ))}
