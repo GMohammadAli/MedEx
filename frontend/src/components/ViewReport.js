@@ -4,9 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../context/authContext";
 import { ContractContext } from "../context/contractContext";
+import generatePDF from "../services/reportGenerator";
 
 function ViewReport() {
-  const { reportUrl, getReport } = useContext(AuthContext);
+  const { reportUrl, getReports } = useContext(AuthContext);
   const authContext = useContext(AuthContext);
   const contractContext = useContext(ContractContext);
   const [ prediction, setPrediction] = useState(1);
@@ -30,8 +31,8 @@ function ViewReport() {
     }
   };
 
-  const getReports = async () => {
-    await getReport(contractContext.medEx);
+  const getReportsForPage = async () => {
+    await getReports(contractContext.medEx);
     // eslint-disable-next-line array-callback-return
     const report = reports.filter((report) => {
       if(report.patientid === contractContext.account) return report
@@ -39,9 +40,13 @@ function ViewReport() {
     setReports(report)
   };
 
+  const reportDownload = async (patientId) => {
+    await generatePDF(reports, patientId);
+  };
+
   useEffect(() => {
     checkifPatient(); 
-    getReports();
+    getReportsForPage();
     // eslint-disable-next-line
   }, [contractContext.account]);
 
@@ -89,8 +94,8 @@ function ViewReport() {
                           <TableCell align="right">Report Type</TableCell>
                           <TableCell align="right">Blood Group</TableCell>
                           <TableCell align="right">Date Of Birth</TableCell>
-                          <TableCell align="right">Has Diabetes?</TableCell>
                           <TableCell align="right">Hospital Name</TableCell>
+                          <TableCell align="right">Download Your Report?</TableCell>
                         </TableRow>
                       </TableHead>
                       <TableBody>
@@ -113,11 +118,24 @@ function ViewReport() {
                             </TableCell>
                             <TableCell align="right">{report.DOB}</TableCell>
                             <TableCell align="right">
-                              {report.diabetes.toString()}
-                            </TableCell>
-                            <TableCell align="right">
                               {report.Hos_name}
                             </TableCell>
+                            <Box
+                              sx={{
+                                p: 2,
+                                display: "flex",
+                                alignItems: "column",
+                                justifyContent: "center",
+                              }}
+                            >
+                              <Button
+                                onClick={() => {
+                                  reportDownload(report.patientId);
+                                }}
+                              >
+                                Download Report
+                              </Button>
+                            </Box>
                           </TableRow>
                         ))}
                       </TableBody>
@@ -160,7 +178,9 @@ function ViewReport() {
                     fontWeight: "600",
                     margin: "1rem",
                   }}
-                >You Can Apply upto Rs.{prediction} of Insurance Claim</Typography>
+                >
+                  You Can Apply upto Rs.{prediction} of Insurance Claim
+                </Typography>
               )}
             </Box>
           </Paper>
@@ -169,5 +189,6 @@ function ViewReport() {
     </Container>
   );
 }
+
 
 export default ViewReport;

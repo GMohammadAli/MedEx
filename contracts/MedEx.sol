@@ -22,6 +22,7 @@ contract medEx {
         uint age;
         string Hos_name;
         string Doc_name;
+        string url;
         //string[] Symptoms;
         //string[] Allergies;
         bool diabetes;
@@ -129,6 +130,7 @@ contract medEx {
         string memory gender,
         string memory Hos_name,
         string memory Doc_name,
+        string memory _url,
         uint age,
         //string[] memory Symptoms,
         //string[] memory Allergies,
@@ -149,6 +151,7 @@ contract medEx {
         repos.age = age;
         repos.Hos_name = Hos_name;
         repos.Doc_name = Doc_name;
+        repos.url = _url;
         repos.diabetes = diabetes;
 
         //repos.Symptoms = Symptoms;

@@ -88,11 +88,11 @@ function DoctorDiagnosisPage() {
                       <TableRow>
                         <TableCell>Patient Id</TableCell>
                         <TableCell align="right">Patient's Name</TableCell>
-                        <TableCell align="right">Gender</TableCell>
+                        {/* <TableCell align="right">Gender</TableCell>
                         <TableCell align="right">Blood Group</TableCell>
                         <TableCell align="right">Date Of Birth</TableCell>
                         <TableCell align="right">Has Diabetes?</TableCell>
-                        <TableCell align="right">Hospital Name</TableCell>
+                        <TableCell align="right">Hospital Name</TableCell> */}
                         <TableCell align="right">View Full Report?</TableCell>
                       </TableRow>
                     </TableHead>
@@ -106,7 +106,7 @@ function DoctorDiagnosisPage() {
                             <TableCell align="right">
                               {report.PatientName}
                             </TableCell>
-                            <TableCell align="right">{report.gender}</TableCell>
+                            {/* <TableCell align="right">{report.gender}</TableCell>
                             <TableCell align="right">
                               {report.Bloodgrp}
                             </TableCell>
@@ -116,10 +116,9 @@ function DoctorDiagnosisPage() {
                             </TableCell>
                             <TableCell align="right">
                               {report.Hos_name}
-                            </TableCell>
+                            </TableCell> */}
                             <TableCell>
                               <Button
-                                sx={{ m: "1rem" }}
                                 onClick={() => {
                                   onClickViewReport(report.patientid);}}
                               >
