@@ -17,6 +17,8 @@ function ContractProvider({ children }) {
       setProvider(provider);
 
       const network = await provider.getNetwork();
+      //Important for knowing the chainId
+      console.log(network.chainId);
       const medEx = new ethers.Contract(
         config[network.chainId].MedEx.address,
         medExAbi,
