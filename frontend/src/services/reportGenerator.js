@@ -60,7 +60,7 @@ const generatePDF = (Reports,patientId) => {
   // ticket title. and margin-top + margin-left
   doc.text("MedEx Report", 14, 15);
   // we define the name of our PDF file.
-  doc.save(`report_${date}.pdf`);
+  doc.save(`report_${date}_${tableRows.PatientName}.pdf`);
 };
 
 
